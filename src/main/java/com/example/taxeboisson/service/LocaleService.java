@@ -48,13 +48,13 @@ public class LocaleService {
         return localeDao.deleteBySecteurCode(code);
     }
 
-    public Locale findByRedevableRef(String ref) {
-        return localeDao.findByRedevableRef(ref);
+    public Locale findByRedevableCin(String cin) {
+        return localeDao.findByRedevableCin(cin);
     }
 
     @Transactional
-    public int deleteByRedevableRef(String ref) {
-        return localeDao.deleteByRedevableRef(ref);
+    public int deleteByRedevableCin(String cin) {
+        return localeDao.deleteByRedevableCin(cin);
     }
 
     public List<Locale> findByCategorielocaleRef(String ref) {
@@ -75,7 +75,7 @@ public class LocaleService {
     public int save(Locale locale) {
         Secteur secteur = secteurService.findByCode(locale.getSecteur().getCode());
         locale.setSecteur(secteur);
-        Redevable redevable = redevableService.findByRef(locale.getRedevable().getRef());
+        Redevable redevable = redevableService.findByCin(locale.getRedevable().getCin());
         locale.setRedevable(redevable);
         CategorieLocale categorielocale = categorielocaleService.findByRef(locale.getCategorielocale().getRef());
         locale.setCategorielocale(categorielocale);

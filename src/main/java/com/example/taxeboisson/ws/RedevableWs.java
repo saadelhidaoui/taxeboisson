@@ -13,9 +13,9 @@ public class RedevableWs {
     @Autowired
     RedevableService redevableService;
 
-    @GetMapping("/ref/{ref}")
-    public Redevable findByRef(@PathVariable String ref) {
-        return redevableService.findByRef(ref);
+    @GetMapping("/cin/{cin}")
+    public Redevable findByCin(@PathVariable String cin) {
+        return redevableService.findByCin(cin);
     }
 
     @PostMapping("/")
@@ -27,9 +27,9 @@ public class RedevableWs {
     public List<Redevable> findByTypeRedevableCode(@PathVariable String code) {
         return redevableService.findByTypeRedevableCode(code);
     }
-    @DeleteMapping("/ref/{ref}")
-    public int deleteByRef(@PathVariable String ref) {
-        return redevableService.deleteByRef(ref);
+    @DeleteMapping("/cin/{cin}")
+    public int deleteByCin(@PathVariable String cin) {
+        return redevableService.deleteByCin(cin);
     }
 
     @DeleteMapping("/type-redevable/code/{code}")

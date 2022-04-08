@@ -50,14 +50,14 @@ public class LocaleWs {
         return localeService.findAll();
     }
 
-    @GetMapping("/referenceRedevable/{ref}")
-    public Locale findByRedevableRef(@PathVariable String ref) {
-        return localeService.findByRedevableRef(ref);
+    @GetMapping("/redevable/{cin}")
+    public Locale findByRedevableCin(@PathVariable String cin) {
+        return localeService.findByRedevableCin(cin);
     }
 
-    @DeleteMapping("/referenceRedevable/ref")
-    public int deleteByRedevableRef(@PathVariable String ref) {
-        return localeService.deleteByRedevableRef(ref);
+    @DeleteMapping("/redevable/cin")
+    public int deleteByRedevableCin(@PathVariable String cin) {
+        return localeService.deleteByRedevableCin(cin);
     }
 
     @GetMapping("/referenceCategorielocale/{ref}")

@@ -7,7 +7,7 @@ public class Redevable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String ref;
+    private String cin;
     @ManyToOne
     private TypeRedevable typeRedevable;
 
@@ -38,12 +38,12 @@ public class Redevable {
         this.id = id;
     }
 
-    public String getRef() {
-        return ref;
+    public String getCin() {
+        return cin;
     }
 
-    public void setRef(String ref) {
-        this.ref = ref;
+    public void setCin(String cin) {
+        this.cin = cin;
     }
 
 

@@ -25,15 +25,15 @@ public class RedevableService {
 
 
 
-    public Redevable findByRef(String ref) {
-        return redevableDao.findByRef(ref);
+    public Redevable findByCin(String cin) {
+        return redevableDao.findByCin(cin);
     }
 
 
     public int save(Redevable redevable) {
         TypeRedevable typeRedevable=typeRedevableService.findByCode(redevable.getTypeRedevable().getCode());
         redevable.setTypeRedevable(typeRedevable);
-        if(findByRef(redevable.getRef())!=null){
+        if(findByCin(redevable.getCin())!=null){
             return -1;
         }
         if(typeRedevable==null){
@@ -49,8 +49,8 @@ public class RedevableService {
         return redevableDao.findByTypeRedevableCode(code);
     }
 
-    public int deleteByRef(String ref) {
-        return redevableDao.deleteByRef(ref);
+    public int deleteByCin(String cin) {
+        return redevableDao.deleteByCin(cin);
     }
 
     @Transactional
