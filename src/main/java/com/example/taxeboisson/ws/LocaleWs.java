@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping( "/api/Taxe-Boisson/locale")
+@RequestMapping( "/api/taxe-boisson/locale")
 public class LocaleWs {
 
     @Autowired

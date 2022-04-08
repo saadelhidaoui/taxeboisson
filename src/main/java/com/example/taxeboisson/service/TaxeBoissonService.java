@@ -14,6 +14,7 @@ public class TaxeBoissonService {
     @Autowired
     private TaxeBoissonDao taxeBoissonDao;
 
+
     public TaxeBoisson findByRef(String ref) {
         return taxeBoissonDao.findByRef(ref);
     }
@@ -40,10 +41,16 @@ public class TaxeBoissonService {
         return taxeBoissonDao.findAll();
     }
 
+public  void calc(TaxeBoisson taxeBoisson){
+        double montant;
+        montant=taxeBoisson.getChiffreAffaire()*taxeBoisson.getLocale().getCategorielocale().getTauxTaxeBoisson().getPourcentage();
+        taxeBoisson.setMontantBase(montant);
+}
     public int save(TaxeBoisson taxeBoisson) {
         if(findByRef(taxeBoisson.getRef()) != null) {return -1;}
         else if(taxeBoisson.getChiffreAffaire()<=0) {return -2;}
         else {
+            calc(taxeBoisson);
             taxeBoissonDao.save(taxeBoisson);
             return 1;
         }

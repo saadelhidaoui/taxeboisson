@@ -85,8 +85,6 @@ public class LocaleService {
             return -2;
         }else if(redevable == null) {
             return -3;
-        }else if(categorielocale==null) {
-            return -4;
         }else {
             localeDao.save(locale);
             return 1;

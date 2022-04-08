@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("taxe-boisson/typeredevable")
+@RequestMapping("/api/taxe-boisson/typeredevable")
 public class TypeRedevableWs {
     @GetMapping("code/{code}")
     public TypeRedevable findByCode(@PathVariable String code) {

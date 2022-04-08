@@ -13,6 +13,14 @@ public class CategorieLocale {
      @OneToOne
      TauxTaxeBoisson tauxTaxeBoisson;
 
+    public TauxTaxeBoisson getTauxTaxeBoisson() {
+        return tauxTaxeBoisson;
+    }
+
+    public void setTauxTaxeBoisson(TauxTaxeBoisson tauxTaxeBoisson) {
+        this.tauxTaxeBoisson = tauxTaxeBoisson;
+    }
+
     public Long getId() {
         return id;
     }

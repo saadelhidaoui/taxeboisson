@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/Taxe-Boisson/categorie-locale")
+@RequestMapping(value = "/api/taxe-boisson/categorie-locale")
 public class CategorieLocaleWs {
     @Autowired
     private CategorielocaleService categorielocaleService;

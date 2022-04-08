@@ -17,6 +17,14 @@ public class TaxeBoisson {
     @ManyToOne
     private Locale locale;
 
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
     public long getId() {
         return id;
     }
