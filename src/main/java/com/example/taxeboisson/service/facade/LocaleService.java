@@ -1,21 +1,35 @@
-package com.example.taxeboisson.dao;
+package com.example.taxeboisson.service.facade;
+
+import com.example.taxeboisson.bean.Locale;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import com.example.taxeboisson.bean.Locale;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-
-@Repository
-public interface LocaleDao extends JpaRepository<Locale, Long>{
+public interface LocaleService {
     Locale findByRef(String ref);
+
+    @Transactional
     int deleteByRef(String ref);
+
     Locale findByAdresse(String adresse);
+
     Locale findBySecteurCode(String code);
+
+    @Transactional
     int deleteBySecteurCode(String code);
+
     Locale findByRedevableCin(String cin);
+
+    @Transactional
     int deleteByRedevableCin(String cin);
+
     Locale findByCategorieLocaleRef(String ref);
-    int deleteByCategorieLocaleRef(String ref);
+
+
+    @Transactional
+    int deleteByCategorielocaleRef(String ref);
+
+    List<Locale> findAll();
+
+    int save(Locale locale);
 }

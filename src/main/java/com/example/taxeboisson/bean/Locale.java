@@ -55,10 +55,10 @@ public class Locale {
     public void setRedevable(Redevable redevable) {
         this.redevable = redevable;
     }
-    public CategorieLocale getCategorieLocale() {
+    public CategorieLocale getCategorielocale() {
         return categorieLocale;
     }
-    public void setCategorieLocale(CategorieLocale categorieLocale) {
+    public void setCategorielocale(CategorieLocale categorieLocale) {
         this.categorieLocale = categorieLocale;
     }
     public Secteur getSecteur() {

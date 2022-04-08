@@ -1,24 +1,16 @@
 package com.example.taxeboisson.ws;
 
+import com.example.taxeboisson.bean.Locale;
+import com.example.taxeboisson.service.facade.LocaleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
-import com.example.taxeboisson.bean.Locale;
-import com.example.taxeboisson.service.LocaleService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 @RestController
-@RequestMapping( "/api/taxe-boisson/locale")
+@RequestMapping("/api/taxe-boisson/locale")
 public class LocaleWs {
-
-    @Autowired
-    LocaleService localeService;
 
     @GetMapping("/ref/{ref}")
     public Locale findByRef(@PathVariable String ref) {
@@ -50,31 +42,37 @@ public class LocaleWs {
         return localeService.findAll();
     }
 
-    @GetMapping("/redevable/cin/{cin}")
+    @GetMapping("/redevable/{cin}")
     public Locale findByRedevableCin(@PathVariable String cin) {
         return localeService.findByRedevableCin(cin);
     }
 
-    @DeleteMapping("/redevable/cin/{cin}")
+    @DeleteMapping("/redevable/cin")
     public int deleteByRedevableCin(@PathVariable String cin) {
         return localeService.deleteByRedevableCin(cin);
     }
 
-    @GetMapping("/categorie-locale-ref/{ref}")
-    public List<Locale> findByCategorielocaleRef(@PathVariable String ref) {
-        return localeService.findByCategorielocaleRef(ref);
+
+    @GetMapping("/referenceCategorielocale/{ref}")
+    public Locale findByCategorieLocaleRef(String ref) {
+        return localeService.findByCategorieLocaleRef(ref);
     }
 
-    @DeleteMapping("/categorie-locale-ref/{ref}")
-    public int deleteByCategorielocaleRef(@PathVariable String ref) {
+    @DeleteMapping("/referenceCategorie/{ref}")
+    public int deleteByCategorielocaleRef(String ref) {
         return localeService.deleteByCategorielocaleRef(ref);
     }
+
 
 
     @PostMapping("/")
     public int save(@RequestBody Locale locale) {
         return localeService.save(locale);
     }
+
+
+    @Autowired
+    LocaleService localeService;
 
 }
 
