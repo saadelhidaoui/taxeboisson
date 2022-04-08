@@ -17,9 +17,6 @@ public class TaxeBoisson {
     @ManyToOne
     private Locale locale;
 
-
-
-
     public long getId() {
         return id;
     }

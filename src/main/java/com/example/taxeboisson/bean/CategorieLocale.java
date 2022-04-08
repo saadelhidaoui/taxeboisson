@@ -10,7 +10,8 @@ public class CategorieLocale {
     private Long id;
     private String ref;
     private String description;
-
+     @OneToOne
+     TauxTaxeBoisson tauxTaxeBoisson;
 
     public Long getId() {
         return id;

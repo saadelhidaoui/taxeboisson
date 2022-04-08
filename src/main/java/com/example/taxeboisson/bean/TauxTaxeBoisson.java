@@ -10,7 +10,7 @@ public class TauxTaxeBoisson {
     private String ref;
     private double pourcentage;
 
-    @ManyToOne
+    @OneToOne
     private CategorieLocale categorieLocale;
 
     public CategorieLocale getCategorieLocale() {
