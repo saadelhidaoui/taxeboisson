@@ -19,11 +19,6 @@ public class RedevableWs {
     }
 
 
-    @DeleteMapping("/ref/{ref}")
-    public int deleteByRef(@PathVariable String ref) {
-        return redevableService.deleteByRef(ref);
-    }
-
 
     @PostMapping("/")
     public int save(@RequestBody Redevable redevable) {

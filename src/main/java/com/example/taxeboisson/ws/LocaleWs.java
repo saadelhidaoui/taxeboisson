@@ -70,10 +70,6 @@ public class LocaleWs {
         return localeService.deleteByCategorielocaleRef(ref);
     }
 
-    @DeleteMapping("/redevable/typeRedevable/{code}")
-    public int deleteByTypeRedevableCode(@PathVariable String code) {
-        return localeService.deleteByTypeRedevableCode(code);
-    }
 
     @PostMapping("/")
     public int save(@RequestBody Locale locale) {

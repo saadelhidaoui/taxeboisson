@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/taxe-Boisson")
+@RequestMapping("/api/taxe-Boisson/taxe")
 public class TaxeBoissonWs {
     @Autowired
     TaxeBoissonService taxeBoissonService ;
@@ -29,20 +29,8 @@ public class TaxeBoissonWs {
         return taxeBoissonService.findByRef(ref);
     }
 
-    @GetMapping("/redevable/ref/{ref}")
-    public TaxeBoisson findByRedevableRef(@PathVariable String ref) {
-        return taxeBoissonService.findByRedevableRef(ref);
-    }
 
-    @DeleteMapping("/redevable/ref/{ref}")
-    public int deleteByRedevableRef(@PathVariable String  ref) {
-        return taxeBoissonService.deleteByRedevableRef(ref);
-    }
 
-    @DeleteMapping("/redevable/typeredevable/code/{code}")
-    public int deleteByTypeRedevableCode(@PathVariable String code) {
-        return taxeBoissonService.deleteByTypeRedevableCode(code);
-    }
 
     @GetMapping("/locale/ref/{ref}")
     public TaxeBoisson findByLocaleRef(@PathVariable String ref) {
@@ -52,13 +40,6 @@ public class TaxeBoissonWs {
     @DeleteMapping("/locale/ref/{ref}")
     public int deleteByLocaleRef(@PathVariable String ref) {
         return taxeBoissonService.deleteByLocaleRef(ref);
-    }
-
-
-
-    @DeleteMapping("/locale/categorielocale/ref/{ref}")
-    public int deleteByCategorielocaleRef(@PathVariable String ref) {
-        return taxeBoissonService.deleteByCategorielocaleRef(ref);
     }
 
 

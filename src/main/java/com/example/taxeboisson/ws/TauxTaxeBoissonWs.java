@@ -22,7 +22,6 @@ public class TauxTaxeBoissonWs {
     }
 
     @GetMapping("/pourcentage/{pourcentage}")
-
     public List<TauxTaxeBoisson> findByPourcentage(@PathVariable double pourcentage) {
         return tauxTaxeBoissonService.findByPourcentage(pourcentage);
     }

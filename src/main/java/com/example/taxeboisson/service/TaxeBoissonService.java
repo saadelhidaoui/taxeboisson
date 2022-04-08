@@ -26,13 +26,6 @@ public class TaxeBoissonService {
         return taxeBoissonDao.deleteByLocaleRef(ref);
     }
 
-    public int deleteByCategorielocaleRef(String ref) {
-        return taxeBoissonDao.deleteByCategorielocaleRef(ref);
-    }
-
-    public int deleteByTypeRedevableCode(String code) {
-        return taxeBoissonDao.deleteByTypeRedevableCode(code);
-    }
 
     public TaxeBoisson findByLocaleRefAndTrimAndAnnee(String ref, double trim, double annee) {
         return taxeBoissonDao.findByLocaleRefAndTrimAndAnnee(ref, trim, annee);
@@ -42,13 +35,6 @@ public class TaxeBoissonService {
         return taxeBoissonDao.deleteByRef(ref);
     }
 
-    public TaxeBoisson findByRedevableRef(String ref) {
-        return taxeBoissonDao.findByRedevableRef(ref);
-    }
-
-    public int deleteByRedevableRef(String ref) {
-        return taxeBoissonDao.deleteByRedevableRef(ref);
-    }
 
     public List<TaxeBoisson> findAll() {
         return taxeBoissonDao.findAll();

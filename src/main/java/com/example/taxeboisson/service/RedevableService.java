@@ -30,14 +30,6 @@ public class RedevableService {
     }
 
 
-    @Transactional
-    public int deleteByRef(String ref) {
-        int resultTaxeBoisson = taxeBoissonService.deleteByRedevableRef(ref);
-        int resultLocale = localeService.deleteByRedevableRef(ref);
-        int resultRedevable = redevableDao.deleteByRef(ref);
-        return resultLocale+resultRedevable+resultTaxeBoisson;
-    }
-
     public int save(Redevable redevable) {
         TypeRedevable typeRedevable=typeRedevableService.findByCode(redevable.getTypeRedevable().getCode());
         redevable.setTypeRedevable(typeRedevable);

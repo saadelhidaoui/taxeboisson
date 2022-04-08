@@ -18,5 +18,4 @@ public interface LocaleDao extends JpaRepository<Locale, Long>{
     int deleteByRedevableRef(String ref);
     List<Locale> findByCategorielocaleRef(String ref);
     int deleteByCategorielocaleRef(String ref);
-    int deleteByTypeRedevableCode(String code);
 }

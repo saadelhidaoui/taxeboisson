@@ -66,10 +66,7 @@ public class LocaleService {
         return localeDao.deleteByCategorielocaleRef(ref);
     }
 
-    @Transactional
-    public int deleteByTypeRedevableCode(String code) {
-        return localeDao.deleteByTypeRedevableCode(code);
-    }
+
 
     public List<Locale> findAll() {
         return localeDao.findAll();
