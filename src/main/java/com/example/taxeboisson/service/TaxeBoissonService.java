@@ -5,6 +5,8 @@ import com.example.taxeboisson.dao.TaxeBoissonDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.temporal.IsoFields;
 import java.util.List;
 
 @Service
@@ -44,6 +46,13 @@ public class TaxeBoissonService {
         if(findByRef(taxeBoisson.getRef()) != null) {return -1;}
         else if(taxeBoisson.getChiffreAffaire()<=0) {return -2;}
         else {
+
+            LocalDate dateNow=LocalDate.now();
+            int trim=(dateNow.getMonthValue()/3-1) +1;
+
+            taxeBoisson.setAnnee(dateNow.getYear());
+            taxeBoisson.setTrim(trim);
+
             taxeBoissonDao.save(taxeBoisson);
             return 1;
         }
