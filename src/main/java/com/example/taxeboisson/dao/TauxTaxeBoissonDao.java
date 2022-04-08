@@ -9,6 +9,9 @@ import java.util.List;
 @Repository
 public interface TauxTaxeBoissonDao extends JpaRepository<TauxTaxeBoisson,Long> {
     TauxTaxeBoisson findByRef(String ref);
+    TauxTaxeBoisson findByCategorieLocaleRef(String ref);
+    int deleteByCategorieLocaleRef(String ref);
     List<TauxTaxeBoisson> findByPourcentage(double pourcentage);
+
 
 }

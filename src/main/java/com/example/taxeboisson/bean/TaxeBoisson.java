@@ -16,6 +16,16 @@ public class TaxeBoisson {
     private double montantBase;
     @ManyToOne
     private Locale locale;
+    @ManyToOne
+    private Redevable redevable;
+
+    public Redevable getRedevable() {
+        return redevable;
+    }
+
+    public void setRedevable(Redevable redevable) {
+        this.redevable = redevable;
+    }
 
     public Locale getLocale() {
         return locale;
