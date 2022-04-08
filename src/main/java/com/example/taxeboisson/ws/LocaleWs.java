@@ -3,7 +3,7 @@ package com.example.taxeboisson.ws;
 import java.util.List;
 
 import com.example.taxeboisson.bean.Locale;
-import com.example.taxeboisson.service.LocaleService;
+import com.example.taxeboisson.service.impl.LocaleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LocaleWs {
 
     @Autowired
-    LocaleService localeService;
+    LocaleServiceImpl localeService;
 
     @GetMapping("/ref/{ref}")
     public Locale findByRef(@PathVariable String ref) {
@@ -67,7 +67,7 @@ public class LocaleWs {
 
     @DeleteMapping("/referenceCategorie/{ref}")
     public int deleteByCategorielocaleRef(@PathVariable String ref) {
-        return localeService.deleteByCategorielocaleRef(ref);
+        return localeService.deleteByCategorieLocaleRef(ref);
     }
 
 

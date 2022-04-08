@@ -1,4 +1,4 @@
-package com.example.taxeboisson.service;
+package com.example.taxeboisson.service.impl;
 
 import java.util.List;
 
@@ -7,63 +7,60 @@ import com.example.taxeboisson.bean.Locale;
 import com.example.taxeboisson.bean.Redevable;
 import com.example.taxeboisson.bean.Secteur;
 import com.example.taxeboisson.dao.LocaleDao;
+import com.example.taxeboisson.service.facade.LocaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-public class LocaleService {
-    @Autowired
-    LocaleDao localeDao;
-    @Autowired
-    SecteurService secteurService;
-    @Autowired
-    RedevableService redevableService;
-    @Autowired
-    CategorielocaleService categorielocaleService;
-    @Autowired
-    TaxeBoissonService taxeBoissonService;
-
-
+public class LocaleServiceImpl implements LocaleService {
+    @Override
     public Locale findByRef(String ref) {
         return localeDao.findByRef(ref);
     }
 
     @Transactional
+    @Override
     public int deleteByRef(String ref) {
         return localeDao.deleteByRef(ref);
     }
 
+    @Override
     public Locale findByAdresse(String adresse) {
         return localeDao.findByAdresse(adresse);
     }
 
+    @Override
     public Locale findBySecteurCode(String code) {
         return localeDao.findBySecteurCode(code);
     }
 
     @Transactional
+    @Override
     public int deleteBySecteurCode(String code) {
         return localeDao.deleteBySecteurCode(code);
     }
 
+    @Override
     public Locale findByRedevableCin(String cin) {
         return localeDao.findByRedevableCin(cin);
     }
 
     @Transactional
+    @Override
     public int deleteByRedevableCin(String cin) {
         return localeDao.deleteByRedevableCin(cin);
     }
 
+    @Override
     public List<Locale> findByCategorielocaleRef(String ref) {
-        return localeDao.findByCategorielocaleRef(ref);
+        return localeDao.findByCategorieLocaleRef(ref);
     }
 
     @Transactional
-    public int deleteByCategorielocaleRef(String ref) {
-        return localeDao.deleteByCategorielocaleRef(ref);
+    public int deleteByCategorieLocaleRef(String ref) {
+        return localeDao.deleteByCategorieLocaleRef(ref);
     }
 
     public List<Locale> findAll() {
@@ -75,7 +72,7 @@ public class LocaleService {
         locale.setSecteur(secteur);
         Redevable redevable = redevableService.findByCin(locale.getRedevable().getCin());
         locale.setRedevable(redevable);
-        CategorieLocale categorielocale = categorielocaleService.findByRef(locale.getCategorielocale().getRef());
+        CategorieLocale categorielocale = categorielocaleServiceImpl.findByRef(locale.getCategorielocale().getRef());
         locale.setCategorielocale(categorielocale);
         if(findByRef(locale.getRef()) != null) {
             return -1;
@@ -88,4 +85,18 @@ public class LocaleService {
             return 1;
         }
     }
+
+
+
+    @Autowired
+    LocaleDao localeDao;
+    @Autowired
+    SecteurServiceImpl secteurService;
+    @Autowired
+    RedevableServiceImpl redevableService;
+    @Autowired
+    CategorieLocaleServiceImpl categorielocaleServiceImpl;
+    @Autowired
+    TaxeBoissonServiceImpl taxeBoissonService;
+
 }

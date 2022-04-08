@@ -3,7 +3,7 @@ package com.example.taxeboisson.ws;
 import java.util.List;
 
 import com.example.taxeboisson.bean.TaxeBoisson;
-import com.example.taxeboisson.service.TaxeBoissonService;
+import com.example.taxeboisson.service.impl.TaxeBoissonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/taxe-Boisson/taxe")
 public class TaxeBoissonWs {
     @Autowired
-    TaxeBoissonService taxeBoissonService ;
+    TaxeBoissonServiceImpl taxeBoissonService ;
 
     @DeleteMapping("/ref/{ref}")
     public int deleteByRef(@PathVariable String  ref) {

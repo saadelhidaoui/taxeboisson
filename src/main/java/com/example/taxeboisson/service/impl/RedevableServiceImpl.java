@@ -1,4 +1,4 @@
-package com.example.taxeboisson.service;
+package com.example.taxeboisson.service.impl;
 
 import com.example.taxeboisson.bean.Redevable;
 import com.example.taxeboisson.bean.TypeRedevable;
@@ -10,18 +10,18 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class RedevableService {
+public class RedevableServiceImpl {
 
     @Autowired
     RedevableDao redevableDao;
 
     @Autowired
-    LocaleService localeService;
+    LocaleServiceImpl localeService;
 
     @Autowired
-    TaxeBoissonService taxeBoissonService;
+    TaxeBoissonServiceImpl taxeBoissonService;
     @Autowired
-    private TypeRedevableService typeRedevableService;
+    private TypeRedevableServiceImpl typeRedevableService;
 
 
 

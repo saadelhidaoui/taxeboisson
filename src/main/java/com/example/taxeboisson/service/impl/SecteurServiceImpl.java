@@ -1,4 +1,4 @@
-package com.example.taxeboisson.service;
+package com.example.taxeboisson.service.impl;
 
 import java.util.List;
 
@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class SecteurService {
+public class SecteurServiceImpl {
 
     @Autowired
     SecteurDao secteurDao;
 
     @Autowired
-    LocaleService localeService;
+    LocaleServiceImpl localeService;
 
     public Secteur findByLibelle(String libelle) {
         return secteurDao.findByLibelle(libelle);

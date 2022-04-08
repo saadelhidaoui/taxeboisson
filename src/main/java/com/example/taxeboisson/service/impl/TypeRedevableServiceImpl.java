@@ -1,7 +1,6 @@
-package com.example.taxeboisson.service;
+package com.example.taxeboisson.service.impl;
 
 import com.example.taxeboisson.bean.TypeRedevable;
-import com.example.taxeboisson.dao.RedevableDao;
 import com.example.taxeboisson.dao.TypeRedevableDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class TypeRedevableService {
+public class TypeRedevableServiceImpl {
     @Autowired
-    RedevableService redevableService;
+    RedevableServiceImpl redevableService;
     @Autowired
     TypeRedevableDao typeRedevableDao;
     public TypeRedevable findByCode(String code) {

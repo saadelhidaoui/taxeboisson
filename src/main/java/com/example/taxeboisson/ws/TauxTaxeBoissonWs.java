@@ -1,7 +1,7 @@
 package com.example.taxeboisson.ws;
 
 import com.example.taxeboisson.bean.TauxTaxeBoisson;
-import com.example.taxeboisson.service.TauxTaxeBoissonService;
+import com.example.taxeboisson.service.impl.TauxTaxeBoissonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping( "api/taxe-boisson/taux-taxe-boisson")
 public class TauxTaxeBoissonWs {
     @Autowired
-    private TauxTaxeBoissonService tauxTaxeBoissonService;
+    private TauxTaxeBoissonServiceImpl tauxTaxeBoissonService;
     @GetMapping("/ref/{ref}")
     public TauxTaxeBoisson findByRef(@PathVariable String ref) {
         return tauxTaxeBoissonService.findByRef(ref);

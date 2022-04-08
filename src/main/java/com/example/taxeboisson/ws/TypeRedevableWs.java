@@ -1,7 +1,7 @@
 package com.example.taxeboisson.ws;
 
 import com.example.taxeboisson.bean.TypeRedevable;
-import com.example.taxeboisson.service.TypeRedevableService;
+import com.example.taxeboisson.service.impl.TypeRedevableServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +29,6 @@ public class TypeRedevableWs {
     }
 
     @Autowired
-    TypeRedevableService typeRedevableService;
+    TypeRedevableServiceImpl typeRedevableService;
 }
 

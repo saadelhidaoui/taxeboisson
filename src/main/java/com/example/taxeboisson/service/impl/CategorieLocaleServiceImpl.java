@@ -1,7 +1,8 @@
-package com.example.taxeboisson.service;
+package com.example.taxeboisson.service.impl;
 
 import com.example.taxeboisson.bean.CategorieLocale;
 import com.example.taxeboisson.dao.CategorieLocaleDao;
+import com.example.taxeboisson.service.facade.CategorieLocaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,13 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class CategorielocaleService {
+public class CategorieLocaleServiceImpl implements CategorieLocaleService {
+
     @Autowired
     private CategorieLocaleDao categorieLocaleDao;
     @Autowired
-    private TauxTaxeBoissonService tauxTaxeBoissonService;
+    private TauxTaxeBoissonServiceImpl tauxTaxeBoissonService;
     @Autowired
-    LocaleService localService;
+    LocaleServiceImpl localService;
 
     public CategorieLocale findByRef(String ref) {
         return categorieLocaleDao.findByRef(ref);
@@ -25,12 +27,13 @@ public class CategorielocaleService {
     }
 
     @Transactional
+    @Override
     public int deleteByRef(String ref) {
-        int res1 = localService.deleteByCategorielocaleRef(ref);
+        int res1 = localService.deleteByCategorieLocaleRef(ref);
         int res2 = categorieLocaleDao.deleteByRef(ref);
         return res1 + res2;
     }
-
+    @Override
     public int save( CategorieLocale  categorieLocale){
         if(findByRef(categorieLocale.getRef() ) != null){
             return -1;

@@ -1,7 +1,7 @@
 package com.example.taxeboisson.ws;
 
 import com.example.taxeboisson.bean.CategorieLocale;
-import com.example.taxeboisson.service.CategorielocaleService;
+import com.example.taxeboisson.service.impl.CategorieLocaleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,22 +11,22 @@ import java.util.List;
 @RequestMapping(value = "/api/taxe-boisson/categorie-locale")
 public class CategorieLocaleWs {
     @Autowired
-    private CategorielocaleService categorielocaleService;
+    private CategorieLocaleServiceImpl categorielocaleServiceImpl;
     @GetMapping("/ref/{ref}")
     public CategorieLocale findByRef(@PathVariable String ref) {
-        return categorielocaleService.findByRef(ref);
+        return categorielocaleServiceImpl.findByRef(ref);
     }
     @GetMapping("/")
     public List<CategorieLocale> findAll() {
-        return categorielocaleService.findAll();
+        return categorielocaleServiceImpl.findAll();
     }
     @DeleteMapping("/ref/{ref}")
     public int deleteByRef(@PathVariable String ref) {
-        return categorielocaleService.deleteByRef(ref);
+        return categorielocaleServiceImpl.deleteByRef(ref);
     }
     @PostMapping("/")
     public int save(@RequestBody CategorieLocale categorielocale) {
-        return categorielocaleService.save(categorielocale);
+        return categorielocaleServiceImpl.save(categorielocale);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.example.taxeboisson.ws;
 
 import com.example.taxeboisson.bean.Redevable;
-import com.example.taxeboisson.service.RedevableService;
+import com.example.taxeboisson.service.impl.RedevableServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/api/taxe-boisson/redevable")
 public class RedevableWs {
     @Autowired
-    RedevableService redevableService;
+    RedevableServiceImpl redevableService;
 
     @GetMapping("/cin/{cin}")
     public Redevable findByCin(@PathVariable String cin) {

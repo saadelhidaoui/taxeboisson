@@ -3,7 +3,7 @@ package com.example.taxeboisson.ws;
 import java.util.List;
 
 import com.example.taxeboisson.bean.Secteur;
-import com.example.taxeboisson.service.SecteurService;
+import com.example.taxeboisson.service.impl.SecteurServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SecteurWs {
 
     @Autowired
-    SecteurService secteurService;
+    SecteurServiceImpl secteurService;
 
     @GetMapping("/libelle/{libelle}")
     public Secteur findByLibelle(@PathVariable String libelle) {

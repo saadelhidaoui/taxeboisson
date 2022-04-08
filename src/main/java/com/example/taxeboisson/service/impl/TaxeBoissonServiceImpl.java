@@ -1,4 +1,4 @@
-package com.example.taxeboisson.service;
+package com.example.taxeboisson.service.impl;
 
 import com.example.taxeboisson.bean.TaxeBoisson;
 import com.example.taxeboisson.dao.TaxeBoissonDao;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TaxeBoissonService {
+public class TaxeBoissonServiceImpl {
     @Autowired
-    private TauxTaxeBoissonService tauxTaxeBoissonService;
+    private TauxTaxeBoissonServiceImpl tauxTaxeBoissonService;
     @Autowired
     private TaxeBoissonDao taxeBoissonDao;
 
