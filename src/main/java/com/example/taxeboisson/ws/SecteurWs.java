@@ -25,6 +25,15 @@ public class SecteurWs {
         return secteurService.findByLibelle(libelle);
     }
 
+    @DeleteMapping("/libelle/{libelle}")
+    public int deleteByLibelle(String libelle) {
+        return secteurService.deleteByLibelle(libelle);
+    }
+    @GetMapping("/code/{code}")
+    public Secteur findByCode(String code) {
+        return secteurService.findByCode(code);
+    }
+
     @DeleteMapping("/code/{code}")
     public int deleteByCode(@PathVariable String code) {
         return secteurService.deleteByCode(code);

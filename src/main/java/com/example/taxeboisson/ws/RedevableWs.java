@@ -18,16 +18,20 @@ public class RedevableWs {
         return redevableService.findByRef(ref);
     }
 
-
-
     @PostMapping("/")
     public int save(@RequestBody Redevable redevable) {
         return redevableService.save(redevable);
     }
+
     @GetMapping("/type-redevable/code/{code}")
     public List<Redevable> findByTypeRedevableCode(@PathVariable String code) {
         return redevableService.findByTypeRedevableCode(code);
     }
+    @DeleteMapping("/ref/{ref}")
+    public int deleteByRef(@PathVariable String ref) {
+        return redevableService.deleteByRef(ref);
+    }
+
     @DeleteMapping("/type-redevable/code/{code}")
     public int deleteByTypeRedevableCode(@PathVariable String code) {
         return redevableService.deleteByTypeRedevableCode(code);

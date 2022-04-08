@@ -29,9 +29,6 @@ public class TaxeBoissonWs {
         return taxeBoissonService.findByRef(ref);
     }
 
-
-
-
     @GetMapping("/locale/ref/{ref}")
     public TaxeBoisson findByLocaleRef(@PathVariable String ref) {
         return taxeBoissonService.findByLocaleRef(ref);

@@ -21,6 +21,10 @@ public class SecteurService {
         return secteurDao.findByLibelle(libelle);
     }
 
+    public int deleteByLibelle(String libelle) {
+        return secteurDao.deleteByLibelle(libelle);
+    }
+
     public Secteur findByCode(String code) {
         return secteurDao.findByCode(code);
     }

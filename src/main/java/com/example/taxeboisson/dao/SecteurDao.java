@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface SecteurDao extends JpaRepository<Secteur, Long>{
 
     Secteur findByLibelle(String libelle);
+    int deleteByLibelle(String libelle);
     Secteur findByCode(String code);
     int deleteByCode(String code);
 }

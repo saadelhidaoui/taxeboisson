@@ -49,6 +49,10 @@ public class RedevableService {
         return redevableDao.findByTypeRedevableCode(code);
     }
 
+    public int deleteByRef(String ref) {
+        return redevableDao.deleteByRef(ref);
+    }
+
     @Transactional
     public int deleteByTypeRedevableCode(String code) {
         return redevableDao.deleteByTypeRedevableCode(code);
