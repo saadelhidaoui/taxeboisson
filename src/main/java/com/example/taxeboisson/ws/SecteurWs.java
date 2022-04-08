@@ -25,11 +25,6 @@ public class SecteurWs {
         return secteurService.findByLibelle(libelle);
     }
 
-    @GetMapping("/code/{code}")
-    public Secteur findByCode(@PathVariable String code) {
-        return secteurService.findByCode(code);
-    }
-
     @DeleteMapping("/code/{code}")
     public int deleteByCode(@PathVariable String code) {
         return secteurService.deleteByCode(code);

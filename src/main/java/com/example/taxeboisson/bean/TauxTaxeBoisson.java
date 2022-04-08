@@ -10,6 +10,18 @@ public class TauxTaxeBoisson {
     private String ref;
     private double pourcentage;
 
+    @ManyToOne
+    private CategorieLocale categorieLocale;
+
+    public CategorieLocale getCategorieLocale() {
+        return categorieLocale;
+    }
+
+    public void setCategorieLocale(CategorieLocale categorieLocale) {
+        this.categorieLocale = categorieLocale;
+    }
+
+
 
     public void setId(Long id) {
         this.id = id;

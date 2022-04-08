@@ -38,7 +38,17 @@ public class TauxTaxeBoissonService {
     }
 
     public int updatepourcentage(String ref, double nouveaupr) {
-        tauxTaxeBoissonDao.save(ref, nouveaupr);
-        return 1;
+        TauxTaxeBoisson tauxTaxeBoisson;
+        tauxTaxeBoisson=findByRef(ref);
+
+        if(tauxTaxeBoisson!=null)
+        {
+            tauxTaxeBoisson.setPourcentage(nouveaupr);
+            tauxTaxeBoissonDao.save(tauxTaxeBoisson);
+            return 1;
+        }
+        else return 0;
+
+
     }
 }

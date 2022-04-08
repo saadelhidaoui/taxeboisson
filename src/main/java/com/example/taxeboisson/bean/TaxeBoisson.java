@@ -1,9 +1,7 @@
 package com.example.taxeboisson.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
 public class TaxeBoisson {
 
@@ -16,6 +14,9 @@ public class TaxeBoisson {
     private double chiffreAffaire;
     private double pourcentageApplique;
     private double montantBase;
+    @ManyToOne
+    private Locale locale;
+
 
 
 
