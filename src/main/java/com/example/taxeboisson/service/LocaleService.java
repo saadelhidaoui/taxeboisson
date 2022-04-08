@@ -66,8 +66,6 @@ public class LocaleService {
         return localeDao.deleteByCategorielocaleRef(ref);
     }
 
-
-
     public List<Locale> findAll() {
         return localeDao.findAll();
     }
