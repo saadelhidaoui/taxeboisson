@@ -27,7 +27,7 @@ public class CategorieLocaleServiceImpl implements CategorieLocaleService {
     @Transactional
     @Override
     public int deleteByRef(String ref) {
-        int res1 = localService.deleteByCategorieLocaleRef(ref);
+        int res1 = localService.deleteByCategorielocaleRef(ref);
         int res2 = categorieLocaleDao.deleteByRef(ref);
         return res1 + res2;
     }

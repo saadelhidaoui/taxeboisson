@@ -25,8 +25,9 @@ public interface LocaleService {
 
     Locale findByCategorieLocaleRef(String ref);
 
+
     @Transactional
-    int deleteByCategorieLocaleRef(String ref);
+    int deleteByCategorielocaleRef(String ref);
 
     List<Locale> findAll();
 

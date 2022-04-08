@@ -58,8 +58,8 @@ public class Locale {
     public CategorieLocale getCategorielocale() {
         return categorieLocale;
     }
-    public void setCategorielocale(CategorieLocale categorielocale) {
-        this.categorieLocale = categorielocale;
+    public void setCategorielocale(CategorieLocale categorieLocale) {
+        this.categorieLocale = categorieLocale;
     }
     public Secteur getSecteur() {
         return secteur;

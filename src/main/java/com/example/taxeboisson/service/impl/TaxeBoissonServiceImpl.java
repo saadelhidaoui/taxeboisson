@@ -35,6 +35,16 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
     }
 
     @Override
+    public TaxeBoisson findByRedevableCin(String cin) {
+        return taxeBoissonDao.findByRedevableCin(cin);
+    }
+    @Override
+    @Transactional
+    public int deleteByRedevableCin(String cin) {
+        return taxeBoissonDao.deleteByRedevableCin(cin);
+    }
+
+    @Override
     @Transactional
     public int deleteByRef(String ref) {
         return taxeBoissonDao.deleteByRef(ref);

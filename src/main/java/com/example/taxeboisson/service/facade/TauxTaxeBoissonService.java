@@ -1,6 +1,7 @@
 package com.example.taxeboisson.service.facade;
 
 import com.example.taxeboisson.bean.TauxTaxeBoisson;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,4 +16,10 @@ public interface TauxTaxeBoissonService {
 
 
     int updatePourcentage(String ref, double nouveaupr);
+
+
+    TauxTaxeBoisson findByCategorieLocaleRef(String ref);
+
+    @Transactional
+    int deleteByCategorieLocaleRef(String ref);
 }

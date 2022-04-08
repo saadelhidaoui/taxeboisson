@@ -5,6 +5,7 @@ import com.example.taxeboisson.dao.TauxTaxeBoissonDao;
 import com.example.taxeboisson.service.facade.TauxTaxeBoissonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -49,6 +50,17 @@ public class TauxTaxeBoissonServiceImpl implements TauxTaxeBoissonService {
             tauxTaxeBoissonDao.save(tauxTaxeBoisson);
             return 1;
         } else return 0;
+    }
+
+    @Override
+    public TauxTaxeBoisson findByCategorieLocaleRef(String ref) {
+        return tauxTaxeBoissonDao.findByCategorieLocaleRef(ref);
+    }
+
+    @Override
+    @Transactional
+    public int deleteByCategorieLocaleRef(String ref) {
+        return tauxTaxeBoissonDao.deleteByCategorieLocaleRef(ref);
     }
 
     @Autowired

@@ -3,6 +3,7 @@ package com.example.taxeboisson.ws;
 import com.example.taxeboisson.bean.Locale;
 import com.example.taxeboisson.service.facade.LocaleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,15 +52,17 @@ public class LocaleWs {
         return localeService.deleteByRedevableCin(cin);
     }
 
+
     @GetMapping("/referenceCategorielocale/{ref}")
-    public Locale findByCategorielocaleRef(@PathVariable String ref) {
+    public Locale findByCategorieLocaleRef(String ref) {
         return localeService.findByCategorieLocaleRef(ref);
     }
 
     @DeleteMapping("/referenceCategorie/{ref}")
-    public int deleteByCategorielocaleRef(@PathVariable String ref) {
-        return localeService.deleteByCategorieLocaleRef(ref);
+    public int deleteByCategorielocaleRef(String ref) {
+        return localeService.deleteByCategorielocaleRef(ref);
     }
+
 
 
     @PostMapping("/")

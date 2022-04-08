@@ -59,12 +59,13 @@ public class LocaleServiceImpl implements LocaleService {
         return localeDao.findByCategorieLocaleRef(ref);
     }
 
+
+
     @Transactional
     @Override
-    public int deleteByCategorieLocaleRef(String ref) {
+    public int deleteByCategorielocaleRef(String ref) {
         return localeDao.deleteByCategorieLocaleRef(ref);
     }
-
     @Override
     public List<Locale> findAll() {
         return localeDao.findAll();
