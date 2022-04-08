@@ -1,7 +1,7 @@
 package com.example.taxeboisson.ws;
 
 import com.example.taxeboisson.bean.Redevable;
-import com.example.taxeboisson.service.impl.RedevableServiceImpl;
+import com.example.taxeboisson.service.facade.RedevableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,8 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/taxe-boisson/redevable")
 public class RedevableWs {
-    @Autowired
-    RedevableServiceImpl redevableService;
+
 
     @GetMapping("/cin/{cin}")
     public Redevable findByCin(@PathVariable String cin) {
@@ -27,6 +26,7 @@ public class RedevableWs {
     public List<Redevable> findByTypeRedevableCode(@PathVariable String code) {
         return redevableService.findByTypeRedevableCode(code);
     }
+
     @DeleteMapping("/cin/{cin}")
     public int deleteByCin(@PathVariable String cin) {
         return redevableService.deleteByCin(cin);
@@ -36,10 +36,12 @@ public class RedevableWs {
     public int deleteByTypeRedevableCode(@PathVariable String code) {
         return redevableService.deleteByTypeRedevableCode(code);
     }
+
     @GetMapping("/")
     public List<Redevable> findAll() {
         return redevableService.findAll();
     }
 
-
+    @Autowired
+    RedevableService redevableService;
 }

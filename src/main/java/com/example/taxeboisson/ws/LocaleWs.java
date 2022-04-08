@@ -1,24 +1,15 @@
 package com.example.taxeboisson.ws;
 
+import com.example.taxeboisson.bean.Locale;
+import com.example.taxeboisson.service.facade.LocaleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
-import com.example.taxeboisson.bean.Locale;
-import com.example.taxeboisson.service.impl.LocaleServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 @RestController
-@RequestMapping( "/api/taxe-boisson/locale")
+@RequestMapping("/api/taxe-boisson/locale")
 public class LocaleWs {
-
-    @Autowired
-    LocaleServiceImpl localeService;
 
     @GetMapping("/ref/{ref}")
     public Locale findByRef(@PathVariable String ref) {
@@ -62,7 +53,7 @@ public class LocaleWs {
 
     @GetMapping("/referenceCategorielocale/{ref}")
     public List<Locale> findByCategorielocaleRef(@PathVariable String ref) {
-        return localeService.findByCategorielocaleRef(ref);
+        return localeService.findByCategorieLocaleRef(ref);
     }
 
     @DeleteMapping("/referenceCategorie/{ref}")
@@ -75,6 +66,10 @@ public class LocaleWs {
     public int save(@RequestBody Locale locale) {
         return localeService.save(locale);
     }
+
+
+    @Autowired
+    LocaleService localeService;
 
 }
 

@@ -1,16 +1,16 @@
 package com.example.taxeboisson.service.impl;
 
-import java.util.List;
-
 import com.example.taxeboisson.bean.CategorieLocale;
 import com.example.taxeboisson.bean.Locale;
 import com.example.taxeboisson.bean.Redevable;
 import com.example.taxeboisson.bean.Secteur;
 import com.example.taxeboisson.dao.LocaleDao;
-import com.example.taxeboisson.service.facade.LocaleService;
+import com.example.taxeboisson.service.facade.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Service
@@ -54,49 +54,52 @@ public class LocaleServiceImpl implements LocaleService {
     }
 
     @Override
-    public List<Locale> findByCategorielocaleRef(String ref) {
-        return localeDao.findByCategorieLocaleRef(ref);
+    public List<Locale> findByCategorieLocaleRef(String ref) {
+        return null;
     }
 
+
     @Transactional
+    @Override
     public int deleteByCategorieLocaleRef(String ref) {
         return localeDao.deleteByCategorieLocaleRef(ref);
     }
 
+    @Override
     public List<Locale> findAll() {
         return localeDao.findAll();
     }
 
+    @Override
     public int save(Locale locale) {
         Secteur secteur = secteurService.findByCode(locale.getSecteur().getCode());
         locale.setSecteur(secteur);
         Redevable redevable = redevableService.findByCin(locale.getRedevable().getCin());
         locale.setRedevable(redevable);
-        CategorieLocale categorielocale = categorielocaleServiceImpl.findByRef(locale.getCategorielocale().getRef());
+        CategorieLocale categorielocale = categorielocaleServic.findByRef(locale.getCategorielocale().getRef());
         locale.setCategorielocale(categorielocale);
-        if(findByRef(locale.getRef()) != null) {
+        if (findByRef(locale.getRef()) != null) {
             return -1;
-        }else if(secteur == null) {
+        } else if (secteur == null) {
             return -2;
-        }else if(redevable == null) {
+        } else if (redevable == null) {
             return -3;
-        }else {
+        } else {
             localeDao.save(locale);
             return 1;
         }
     }
 
 
-
     @Autowired
     LocaleDao localeDao;
     @Autowired
-    SecteurServiceImpl secteurService;
+    SecteurService secteurService;
     @Autowired
-    RedevableServiceImpl redevableService;
+    RedevableService redevableService;
     @Autowired
-    CategorieLocaleServiceImpl categorielocaleServiceImpl;
+    CategorieLocaleService categorielocaleServic;
     @Autowired
-    TaxeBoissonServiceImpl taxeBoissonService;
+    TaxeBoissonService taxeBoissonService;
 
 }

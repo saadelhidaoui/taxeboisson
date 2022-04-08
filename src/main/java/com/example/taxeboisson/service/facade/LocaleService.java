@@ -23,5 +23,12 @@ public interface LocaleService {
     @Transactional
     int deleteByRedevableCin(String cin);
 
-    List<Locale> findByCategorielocaleRef(String ref);
+    List<Locale> findByCategorieLocaleRef(String ref);
+
+    @Transactional
+    int deleteByCategorieLocaleRef(String ref);
+
+    List<Locale> findAll();
+
+    int save(Locale locale);
 }

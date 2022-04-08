@@ -1,7 +1,7 @@
 package com.example.taxeboisson.ws;
 
 import com.example.taxeboisson.bean.TypeRedevable;
-import com.example.taxeboisson.service.impl.TypeRedevableServiceImpl;
+import com.example.taxeboisson.service.facade.TypeRedevableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,16 +19,18 @@ public class TypeRedevableWs {
     public int deleteByCode(@PathVariable String code) {
         return typeRedevableService.deleteByCode(code);
     }
+
     @GetMapping("/")
     public List<TypeRedevable> findAll() {
         return typeRedevableService.findAll();
     }
+
     @PostMapping("/")
     public int save(@RequestBody TypeRedevable typeRedevable) {
         return typeRedevableService.save(typeRedevable);
     }
 
     @Autowired
-    TypeRedevableServiceImpl typeRedevableService;
+    TypeRedevableService typeRedevableService;
 }
 
