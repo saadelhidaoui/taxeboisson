@@ -12,6 +12,8 @@ import java.util.List;
 public class CategorieLocaleWs {
     @Autowired
     private CategorielocaleService categorielocaleService;
+
+
     @GetMapping("/ref/{ref}")
     public CategorieLocale findByRef(@PathVariable String ref) {
         return categorielocaleService.findByRef(ref);

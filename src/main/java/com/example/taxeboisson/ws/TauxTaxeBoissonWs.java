@@ -12,6 +12,8 @@ import java.util.List;
 public class TauxTaxeBoissonWs {
     @Autowired
     private TauxTaxeBoissonService tauxTaxeBoissonService;
+
+
     @GetMapping("/ref/{ref}")
     public TauxTaxeBoisson findByRef(@PathVariable String ref) {
         return tauxTaxeBoissonService.findByRef(ref);
@@ -32,5 +34,13 @@ public class TauxTaxeBoissonWs {
     @PutMapping("/updatepourcentage/ref/{ref}/Nouveaupr/{Nouveaupr}")
     public int updatepourcentage(@PathVariable String ref, @PathVariable double Nouveaupr) {
         return tauxTaxeBoissonService.updatepourcentage(ref, Nouveaupr);
+    }@GetMapping("/CategorieLocale/ref/{ref}")
+    public TauxTaxeBoisson findByCategorieLocaleRef(@PathVariable String ref) {
+        return tauxTaxeBoissonService.findByCategorieLocaleRef(ref);
+    }
+
+    @DeleteMapping("/CategorieLocaleref/{ref}")
+    public int deleteByCategorieLocaleRef(@PathVariable String ref) {
+        return tauxTaxeBoissonService.deleteByCategorieLocaleRef(ref);
     }
 }

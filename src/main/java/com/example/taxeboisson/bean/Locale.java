@@ -20,7 +20,7 @@ public class Locale {
     private Redevable redevable;
 
     @ManyToOne
-    private CategorieLocale categorielocale;
+    private CategorieLocale categorieLocale;
 
     @ManyToOne
     private Secteur secteur;
@@ -55,11 +55,11 @@ public class Locale {
     public void setRedevable(Redevable redevable) {
         this.redevable = redevable;
     }
-    public CategorieLocale getCategorielocale() {
-        return categorielocale;
+    public CategorieLocale getCategorieLocale() {
+        return categorieLocale;
     }
-    public void setCategorielocale(CategorieLocale categorielocale) {
-        this.categorielocale = categorielocale;
+    public void setCategorieLocale(CategorieLocale categorieLocale) {
+        this.categorieLocale = categorieLocale;
     }
     public Secteur getSecteur() {
         return secteur;

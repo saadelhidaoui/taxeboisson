@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface TypeRedevableDao extends JpaRepository<TypeRedevable,Long> {
     TypeRedevable findByCode(String code);
     int deleteByCode(String code);
+
 }

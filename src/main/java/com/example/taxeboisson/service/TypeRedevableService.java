@@ -1,7 +1,6 @@
 package com.example.taxeboisson.service;
 
 import com.example.taxeboisson.bean.TypeRedevable;
-import com.example.taxeboisson.dao.RedevableDao;
 import com.example.taxeboisson.dao.TypeRedevableDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
