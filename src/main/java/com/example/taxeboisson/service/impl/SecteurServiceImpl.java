@@ -20,6 +20,7 @@ public class SecteurServiceImpl implements SecteurService {
     }
 
     @Override
+    @Transactional
     public int deleteByLibelle(String libelle) {
         return secteurDao.deleteByLibelle(libelle);
     }

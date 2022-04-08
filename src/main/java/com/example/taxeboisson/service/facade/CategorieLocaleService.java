@@ -6,12 +6,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface CategorieLocaleService {
-    CategorieLocale findByRef(String ref);
 
-    List<CategorieLocale> findAll();
+    CategorieLocale findByRef(String ref);
 
     @Transactional
     int deleteByRef(String ref);
+
+    List<CategorieLocale> findAll();
 
     int save(CategorieLocale categorieLocale);
 }

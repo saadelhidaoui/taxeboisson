@@ -8,6 +8,7 @@ import java.util.List;
 public interface SecteurService {
     Secteur findByLibelle(String libelle);
 
+    @Transactional
     int deleteByLibelle(String libelle);
 
     Secteur findByCode(String code);

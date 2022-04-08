@@ -1,6 +1,7 @@
 package com.example.taxeboisson.service.facade;
 
 import com.example.taxeboisson.bean.TaxeBoisson;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -9,10 +10,12 @@ public interface TaxeBoissonService {
 
     TaxeBoisson findByLocaleRef(String ref);
 
+    @Transactional
     int deleteByLocaleRef(String ref);
 
     TaxeBoisson findByLocaleRefAndTrimAndAnnee(String ref, double trim, double annee);
 
+    @Transactional
     int deleteByRef(String ref);
 
     List<TaxeBoisson> findAll();

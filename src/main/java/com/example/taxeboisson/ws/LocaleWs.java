@@ -52,7 +52,7 @@ public class LocaleWs {
     }
 
     @GetMapping("/referenceCategorielocale/{ref}")
-    public List<Locale> findByCategorielocaleRef(@PathVariable String ref) {
+    public Locale findByCategorielocaleRef(@PathVariable String ref) {
         return localeService.findByCategorieLocaleRef(ref);
     }
 

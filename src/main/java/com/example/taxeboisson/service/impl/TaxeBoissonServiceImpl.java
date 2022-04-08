@@ -6,6 +6,7 @@ import com.example.taxeboisson.service.facade.TauxTaxeBoissonService;
 import com.example.taxeboisson.service.facade.TaxeBoissonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
     }
 
     @Override
+    @Transactional
     public int deleteByLocaleRef(String ref) {
         return taxeBoissonDao.deleteByLocaleRef(ref);
     }
@@ -33,6 +35,7 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
     }
 
     @Override
+    @Transactional
     public int deleteByRef(String ref) {
         return taxeBoissonDao.deleteByRef(ref);
     }

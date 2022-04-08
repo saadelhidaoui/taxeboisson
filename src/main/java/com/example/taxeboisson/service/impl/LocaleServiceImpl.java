@@ -53,11 +53,11 @@ public class LocaleServiceImpl implements LocaleService {
         return localeDao.deleteByRedevableCin(cin);
     }
 
-    @Override
-    public List<Locale> findByCategorieLocaleRef(String ref) {
-        return null;
-    }
 
+    @Override
+    public Locale findByCategorieLocaleRef(String ref) {
+        return localeDao.findByCategorieLocaleRef(ref);
+    }
 
     @Transactional
     @Override
@@ -76,7 +76,7 @@ public class LocaleServiceImpl implements LocaleService {
         locale.setSecteur(secteur);
         Redevable redevable = redevableService.findByCin(locale.getRedevable().getCin());
         locale.setRedevable(redevable);
-        CategorieLocale categorielocale = categorielocaleServic.findByRef(locale.getCategorielocale().getRef());
+        CategorieLocale categorielocale = categorieLocaleServic.findByRef(locale.getCategorielocale().getRef());
         locale.setCategorielocale(categorielocale);
         if (findByRef(locale.getRef()) != null) {
             return -1;
@@ -98,7 +98,7 @@ public class LocaleServiceImpl implements LocaleService {
     @Autowired
     RedevableService redevableService;
     @Autowired
-    CategorieLocaleService categorielocaleServic;
+    CategorieLocaleService categorieLocaleServic;
     @Autowired
     TaxeBoissonService taxeBoissonService;
 

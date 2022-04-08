@@ -23,7 +23,6 @@ public class RedevableServiceImpl implements RedevableService {
     }
 
     @Override
-
     public int save(Redevable redevable) {
         TypeRedevable typeRedevable = typeRedevableService.findByCode(redevable.getTypeRedevable().getCode());
         redevable.setTypeRedevable(typeRedevable);
@@ -40,13 +39,12 @@ public class RedevableServiceImpl implements RedevableService {
     }
 
     @Override
-
     public List<Redevable> findByTypeRedevableCode(String code) {
         return redevableDao.findByTypeRedevableCode(code);
     }
 
     @Override
-
+    @Transactional
     public int deleteByCin(String cin) {
         return redevableDao.deleteByCin(cin);
     }
