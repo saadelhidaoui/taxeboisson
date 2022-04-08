@@ -5,12 +5,15 @@ import com.example.taxeboisson.dao.TaxeBoissonDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class TaxeBoissonService {
     @Autowired
     private TauxTaxeBoissonService tauxTaxeBoissonService;
+    @Autowired
+    private LocaleService localeService;
     @Autowired
     private TaxeBoissonDao taxeBoissonDao;
 
@@ -41,11 +44,26 @@ public class TaxeBoissonService {
     }
 
     public int save(TaxeBoisson taxeBoisson) {
-        if(findByRef(taxeBoisson.getRef()) != null) {return -1;}
-        else if(taxeBoisson.getChiffreAffaire()<=0) {return -2;}
-        else {
+        prepare(taxeBoisson);
+        if (findByRef(taxeBoisson.getRef()) != null) {
+            return -1;
+        } else if (taxeBoisson.getChiffreAffaire() <= 0) {
+            return -2;
+        } else if (taxeBoisson.getLocale() == null) {
+            return -3;
+        } else {
             taxeBoissonDao.save(taxeBoisson);
             return 1;
         }
+    }
+
+    private void prepare(TaxeBoisson taxeBoisson) {
+
+        LocalDate dateNow = LocalDate.now();
+        taxeBoisson.setAnnee(dateNow.getYear());
+        taxeBoisson.setTrim((dateNow.getMonthValue() - 1) / 3);
+        taxeBoisson.setLocale(localeService.findByRef(taxeBoisson.getLocale().getRef()));
+
+
     }
 }
