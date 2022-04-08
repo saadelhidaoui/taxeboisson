@@ -65,7 +65,7 @@ public class LocaleWs {
         return localeService.findByCategorielocaleRef(ref);
     }
 
-    @DeleteMapping("/referenceCategorie/{ref}")
+    @DeleteMapping("/categorie-locale-ref/{ref}")
     public int deleteByCategorielocaleRef(@PathVariable String ref) {
         return localeService.deleteByCategorielocaleRef(ref);
     }
