@@ -41,7 +41,7 @@ public class TaxeBoissonWs {
 
 
     @GetMapping("/locale/ref/{ref}/trim/{trim}/annee/{annee}")
-    public TaxeBoisson findByLocaleRefAndTrimAndAnnee(String ref, double trim, double annee) {
+    public TaxeBoisson findByLocaleRefAndTrimAndAnnee(@PathVariable String ref,@PathVariable double trim,@PathVariable double annee) {
         return taxeBoissonService.findByLocaleRefAndTrimAndAnnee(ref, trim, annee);
     }
     @GetMapping("/")
