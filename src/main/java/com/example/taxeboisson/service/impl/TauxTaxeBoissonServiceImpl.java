@@ -13,6 +13,12 @@ import java.util.List;
 
 @Service
 public class TauxTaxeBoissonServiceImpl implements TauxTaxeBoissonService {
+    @Autowired
+    private TauxTaxeBoissonDao tauxTaxeBoissonDao;
+
+    @Autowired
+    private CategorieLocaleService categorieLocaleService;
+
 
     @Override
     public TauxTaxeBoisson findByRef(String ref) {
@@ -67,11 +73,7 @@ public class TauxTaxeBoissonServiceImpl implements TauxTaxeBoissonService {
         return tauxTaxeBoissonDao.deleteByCategorieLocaleRef(ref);
     }
 
-    @Autowired
-    private TauxTaxeBoissonDao tauxTaxeBoissonDao;
 
-    @Autowired
-    private CategorieLocaleService categorieLocaleService;
 
 
 }

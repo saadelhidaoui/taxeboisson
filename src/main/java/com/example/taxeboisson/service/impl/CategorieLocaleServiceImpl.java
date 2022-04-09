@@ -13,6 +13,12 @@ import java.util.List;
 
 @Service
 public class CategorieLocaleServiceImpl implements CategorieLocaleService {
+    @Autowired
+    private CategorieLocaleDao categorieLocaleDao;
+    @Autowired
+    private TauxTaxeBoissonService tauxTaxeBoissonService;
+    @Autowired
+    LocaleService localService;
 
     @Override
     public CategorieLocale findByRef(String ref) {
@@ -50,10 +56,5 @@ public class CategorieLocaleServiceImpl implements CategorieLocaleService {
     }
 
 
-    @Autowired
-    private CategorieLocaleDao categorieLocaleDao;
-    @Autowired
-    private TauxTaxeBoissonService tauxTaxeBoissonService;
-    @Autowired
-    LocaleService localService;
+
 }
