@@ -17,8 +17,6 @@ public class TypeRedevableServiceImpl implements TypeRedevableService {
     @Autowired
     private TypeRedevableDao typeRedevableDao;
 
-
-
     @Override
     public int save(TypeRedevable typeRedevable) {
         if (findByCode(typeRedevable.getCode()) != null) {

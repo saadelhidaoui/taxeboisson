@@ -20,10 +20,7 @@ public interface TaxeBoissonService {
     List<TaxeBoisson> findAll();
 
 
-    @Transactional
     int deleteByRef(String ref);
-
-   /* List<TaxeBoisson> findAll();
 
     TaxeBoisson findByAnnee(int annee);
 
@@ -31,10 +28,10 @@ public interface TaxeBoissonService {
 
 
     TaxeBoisson findByAnneeAndTrim(int annee, int trim);
-//sssssssss
+
 
     int deleteByAnneeAndTrim(int annee, int trim);
-    //SSSSS*/
+
 
     int save(TaxeBoisson taxeBoisson);
 }

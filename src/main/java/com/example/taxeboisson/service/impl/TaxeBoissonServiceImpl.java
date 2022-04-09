@@ -45,23 +45,19 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         return taxeBoissonDao.findAll();
     }
 
-    @Override
     public TaxeBoisson findByAnnee(int annee) {
         return taxeBoissonDao.findByAnnee(annee);
     }
 
-    @Override
     @Transactional
     public int deleteByAnnee(int annee) {
         return taxeBoissonDao.deleteByAnnee(annee);
     }
 
-    @Override
     public TaxeBoisson findByAnneeAndTrim(int annee, int trim) {
         return taxeBoissonDao.findByAnneeAndTrim(annee, trim);
     }
 
-    @Override
     @Transactional
     public int deleteByAnneeAndTrim(int annee, int trim) {
         return taxeBoissonDao.deleteByAnneeAndTrim(annee, trim);
