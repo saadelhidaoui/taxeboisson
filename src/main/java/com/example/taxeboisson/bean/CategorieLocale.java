@@ -12,10 +12,6 @@ public class CategorieLocale {
     private String description;
 
 
-
-
-
-
     public String getRef() {
         return ref;
     }

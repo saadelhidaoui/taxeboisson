@@ -63,7 +63,6 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         Locale locale = localeService.findByRef(taxeBoisson.getLocale().getRef());
         taxeBoisson.setLocale(locale);
 
-
         Redevable redevable = redevableService.findByCin(taxeBoisson.getLocale().getRedevable().getCin());
         taxeBoisson.getLocale().setRedevable(redevable);
 
@@ -72,7 +71,6 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         TaxeBoisson byLocaleRefAndTrimAndAnnee = findByLocaleRefAndTrimAndAnnee(taxeBoisson.getLocale().getRef(),tri, taxeBoisson.getAnnee());
 
         if (taxeBoisson.getAnnee() > anneeActuelle) {
-
             return -1;
         } else if (taxeBoisson.getChiffreAffaire() <= 0) {
             return -2;
@@ -83,8 +81,6 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         } else if (redevable == null) {
             return -5;
         } else {
-
-
 
                TauxTaxeBoisson t = tauxTaxeBoissonService.findByCategorieLocaleRef(taxeBoisson.getLocale().getCategorieLocale().getRef());
 
