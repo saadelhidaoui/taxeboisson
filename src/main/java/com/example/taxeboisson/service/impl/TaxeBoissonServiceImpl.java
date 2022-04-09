@@ -81,6 +81,9 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
 
             Secteur secteur = secteurService.findByCode(taxeBoisson.getLocale().getSecteur().getCode());
             taxeBoisson.getLocale().setSecteur(secteur);
+
+            TauxTaxeBoisson tauxTaxeBoisson = tauxTaxeBoissonService.findByCategorieLocaleRef(taxeBoisson.getLocale().getCategorieLocale().getRef());
+            taxeBoisson.setPourcentageApplique(tauxTaxeBoisson.getPourcentage());
         }
 
     }
@@ -118,9 +121,7 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
     }
 
     void handleProcess(TaxeBoisson taxeBoisson) {
-        TauxTaxeBoisson t = tauxTaxeBoissonService.findByCategorieLocaleRef(taxeBoisson.getLocale().getCategorieLocale().getRef());
 
-        taxeBoisson.setPourcentageApplique(t.getPourcentage());
         double mtb = (taxeBoisson.getPourcentageApplique() / 100) * taxeBoisson.getChiffreAffaire();
 
         taxeBoisson.setMontantBase(mtb);
