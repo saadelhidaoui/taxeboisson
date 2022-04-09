@@ -84,6 +84,17 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         }
 
     }
+    public int save(TaxeBoisson taxeBoisson) {
+        prepare(taxeBoisson);
+
+        int res = validate(taxeBoisson);
+
+        if (res > 0) {
+            handleProcess(taxeBoisson);
+        }
+
+        return res;
+    }
 
     int validate(TaxeBoisson taxeBoisson) {
         int anneeActuelle = Calendar.getInstance().get(Calendar.YEAR);
@@ -127,30 +138,19 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         taxeBoissonDao.save(taxeBoisson);
     }
 
-    public int save(TaxeBoisson taxeBoisson) {
-        prepare(taxeBoisson);
 
-        int res = validate(taxeBoisson);
-
-        if (res > 0) {
-            handleProcess(taxeBoisson);
-        }
-
-        return res;
-    }
 
     @Autowired
-    TauxTaxeBoissonService tauxTaxeBoissonService;
-
+    private TauxTaxeBoissonService tauxTaxeBoissonService;
     @Autowired
-    TaxeBoissonDao taxeBoissonDao;
+    private TaxeBoissonDao taxeBoissonDao;
     @Autowired
-    LocaleService localeService;
+    private LocaleService localeService;
     @Autowired
-    RedevableService redevableService;
+    private RedevableService redevableService;
     @Autowired
-    CategorieLocaleService categorieLocaleService;
+    private CategorieLocaleService categorieLocaleService;
     @Autowired
-    SecteurService secteurService;
+    private SecteurService secteurService;
 
 }

@@ -17,13 +17,13 @@ import java.util.List;
 public class RedevableServiceImpl implements RedevableService {
 
     @Autowired
-    RedevableDao redevableDao;
+    private RedevableDao redevableDao;
 
     @Autowired
-    LocaleService localeService;
+    private LocaleService localeService;
 
     @Autowired
-    TaxeBoissonService taxeBoissonService;
+    private TaxeBoissonService taxeBoissonService;
     @Autowired
     private TypeRedevableService typeRedevableService;
 
