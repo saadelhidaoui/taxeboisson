@@ -62,7 +62,7 @@ public class TaxeBoissonWs {
     public TaxeBoisson findByAnneeAndTrim(@PathVariable int annee,@PathVariable int trim) {
         return taxeBoissonService.findByAnneeAndTrim(annee, trim);
     }
-    @DeleteMapping("deletebyanneandtrim/annee/{annee}/trim/{trim}")
+    @DeleteMapping("/deletebyanneandtrim/annee/{annee}/trim/{trim}")
     public int deleteByAnneeAndTrim(@PathVariable int annee,@PathVariable int trim) {
         return taxeBoissonService.deleteByAnneeAndTrim(annee, trim);
     }

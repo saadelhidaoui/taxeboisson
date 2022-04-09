@@ -26,11 +26,12 @@ public interface TaxeBoissonService {
     List<TaxeBoisson> findAll();
 
     TaxeBoisson findByAnnee(int annee);
-//sssssssss
 
     int deleteByAnnee(int annee);
 
+
     TaxeBoisson findByAnneeAndTrim(int annee, int trim);
+//sssssssss
 
     int deleteByAnneeAndTrim(int annee, int trim);
     //SSSSS
