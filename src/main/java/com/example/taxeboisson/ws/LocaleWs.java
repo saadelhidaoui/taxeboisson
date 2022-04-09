@@ -12,29 +12,25 @@ import java.util.List;
 @RequestMapping("/api/taxe-boisson/locale")
 public class LocaleWs {
 
+    @Autowired
+    LocaleService localeService;
+
+    /**
+     * GetMapping
+     **/
     @GetMapping("/ref/{ref}")
     public Locale findByRef(@PathVariable String ref) {
         return localeService.findByRef(ref);
     }
 
-    @DeleteMapping("/ref/{ref}")
-    public int deleteByRef(@PathVariable String ref) {
-        return localeService.deleteByRef(ref);
-    }
-
     @GetMapping("/adresse/{adresse}")
-    public List<Locale>  findByAdresse(@PathVariable String adresse) {
+    public List<Locale> findByAdresse(@PathVariable String adresse) {
         return localeService.findByAdresse(adresse);
     }
 
     @GetMapping("/secteur/code/{code}")
-    public List<Locale>  findBySecteurCode(@PathVariable String code) {
+    public List<Locale> findBySecteurCode(@PathVariable String code) {
         return localeService.findBySecteurCode(code);
-    }
-
-    @DeleteMapping("/secteur/code/{code}")
-    public int deleteBySecteurCode(@PathVariable String code) {
-        return localeService.deleteBySecteurCode(code);
     }
 
     @GetMapping("/")
@@ -43,8 +39,26 @@ public class LocaleWs {
     }
 
     @GetMapping("/redevable/cin/{cin}")
-    public List<Locale>  findByRedevableCin(@PathVariable String cin) {
+    public List<Locale> findByRedevableCin(@PathVariable String cin) {
         return localeService.findByRedevableCin(cin);
+    }
+
+    @GetMapping("/referenceCategorielocale/ref/{ref}")
+    public List<Locale> findByCategorieLocaleRef(@PathVariable String ref) {
+        return localeService.findByCategorieLocaleRef(ref);
+    }
+
+    /**
+     * DeleteMapping
+     **/
+    @DeleteMapping("/ref/{ref}")
+    public int deleteByRef(@PathVariable String ref) {
+        return localeService.deleteByRef(ref);
+    }
+
+    @DeleteMapping("/secteur/code/{code}")
+    public int deleteBySecteurCode(@PathVariable String code) {
+        return localeService.deleteBySecteurCode(code);
     }
 
     @DeleteMapping("/redevable/cin/{cin}")
@@ -52,27 +66,19 @@ public class LocaleWs {
         return localeService.deleteByRedevableCin(cin);
     }
 
-
-    @GetMapping("/referenceCategorielocale/ref/{ref}")
-    public List<Locale>  findByCategorieLocaleRef(@PathVariable String ref) {
-        return localeService.findByCategorieLocaleRef(ref);
-    }
-
     @DeleteMapping("/referenceCategorie/ref/{ref}")
     public int deleteByCategorielocaleRef(@PathVariable String ref) {
         return localeService.deleteByCategorielocaleRef(ref);
     }
 
-
-
+    /**
+     * PostMapping
+     **/
     @PostMapping("/")
     public int save(@RequestBody Locale locale) {
         return localeService.save(locale);
     }
 
-
-    @Autowired
-    LocaleService localeService;
 
 }
 

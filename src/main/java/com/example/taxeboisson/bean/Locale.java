@@ -13,7 +13,7 @@ public class Locale {
     private String adresse;
     private String rue;
 
-    @OneToOne
+    @ManyToOne
     private Redevable redevable;
 
     @ManyToOne
@@ -21,8 +21,6 @@ public class Locale {
 
     @ManyToOne
     private Secteur secteur;
-
-
 
 
     public String getRef() {

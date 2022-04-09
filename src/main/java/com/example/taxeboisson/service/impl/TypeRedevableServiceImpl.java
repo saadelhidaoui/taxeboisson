@@ -12,6 +12,23 @@ import java.util.List;
 
 @Service
 public class TypeRedevableServiceImpl implements TypeRedevableService {
+    @Autowired
+    RedevableService redevableService;
+    @Autowired
+    TypeRedevableDao typeRedevableDao;
+
+
+
+    @Override
+    public int save(TypeRedevable typeRedevable) {
+        if (findByCode(typeRedevable.getCode()) != null) {
+            return -1;
+        } else {
+            typeRedevableDao.save(typeRedevable);
+            return 1;
+        }
+    }
+
     @Override
     public TypeRedevable findByCode(String code) {
         return typeRedevableDao.findByCode(code);
@@ -29,20 +46,4 @@ public class TypeRedevableServiceImpl implements TypeRedevableService {
     public List<TypeRedevable> findAll() {
         return typeRedevableDao.findAll();
     }
-
-    @Override
-    public int save(TypeRedevable typeRedevable) {
-        if (findByCode(typeRedevable.getCode()) != null) {
-            return -1;
-        } else {
-            typeRedevableDao.save(typeRedevable);
-            return 1;
-        }
-    }
-
-    @Autowired
-    RedevableService redevableService;
-    @Autowired
-    TypeRedevableDao typeRedevableDao;
-
 }

@@ -17,13 +17,13 @@ public interface TaxeBoissonService {
 
     TaxeBoisson findByLocaleRefAndTrimAndAnnee(String ref, int trim, int annee);
 
-
+    List<TaxeBoisson> findAll();
 
 
     @Transactional
     int deleteByRef(String ref);
 
-    List<TaxeBoisson> findAll();
+   /* List<TaxeBoisson> findAll();
 
     TaxeBoisson findByAnnee(int annee);
 
@@ -34,7 +34,7 @@ public interface TaxeBoissonService {
 //sssssssss
 
     int deleteByAnneeAndTrim(int annee, int trim);
-    //SSSSS
+    //SSSSS*/
 
     int save(TaxeBoisson taxeBoisson);
 }

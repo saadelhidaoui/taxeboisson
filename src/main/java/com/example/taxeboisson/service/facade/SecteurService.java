@@ -8,15 +8,15 @@ import java.util.List;
 public interface SecteurService {
     Secteur findByLibelle(String libelle);
 
-    @Transactional
-    int deleteByLibelle(String libelle);
 
+    /******            Get          ******/
     Secteur findByCode(String code);
-
-    @Transactional
-    int deleteByCode(String code);
-
     List<Secteur> findAll();
 
+    /******            delete          ******/
+    int deleteByCode(String code);
+    int deleteByLibelle(String libelle);
+
+    /******            Post          ******/
     int save(Secteur secteur);
 }

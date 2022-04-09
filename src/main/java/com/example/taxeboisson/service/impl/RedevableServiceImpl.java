@@ -16,20 +16,26 @@ import java.util.List;
 @Service
 public class RedevableServiceImpl implements RedevableService {
 
+    @Autowired
+    RedevableDao redevableDao;
 
-    @Override
-    public Redevable findByCin(String cin) {
-        return redevableDao.findByCin(cin);
-    }
+    @Autowired
+    LocaleService localeService;
+
+    @Autowired
+    TaxeBoissonService taxeBoissonService;
+    @Autowired
+    private TypeRedevableService typeRedevableService;
+
+
 
     @Override
     public int save(Redevable redevable) {
-        TypeRedevable typeRedevable = typeRedevableService.findByCode(redevable.getTypeRedevable().getCode());
-        redevable.setTypeRedevable(typeRedevable);
+        prepare(redevable);
         if (findByCin(redevable.getCin()) != null) {
             return -1;
         }
-        if (typeRedevable == null) {
+        if (redevable.getTypeRedevable() == null) {
             return -2;
         } else {
             redevableDao.save(redevable);
@@ -38,15 +44,25 @@ public class RedevableServiceImpl implements RedevableService {
 
     }
 
+    private void prepare(Redevable redevable){
+        TypeRedevable typeRedevable = typeRedevableService.findByCode(redevable.getTypeRedevable().getCode());
+        redevable.setTypeRedevable(typeRedevable);
+    }
+
     @Override
-    public List<Redevable> findByTypeRedevableCode(String code) {
-        return redevableDao.findByTypeRedevableCode(code);
+    public Redevable findByCin(String cin) {
+        return redevableDao.findByCin(cin);
     }
 
     @Override
     @Transactional
     public int deleteByCin(String cin) {
         return redevableDao.deleteByCin(cin);
+    }
+
+    @Override
+    public List<Redevable> findByTypeRedevableCode(String code) {
+        return redevableDao.findByTypeRedevableCode(code);
     }
 
     @Transactional
@@ -59,18 +75,6 @@ public class RedevableServiceImpl implements RedevableService {
     public List<Redevable> findAll() {
         return redevableDao.findAll();
     }
-
-
-    @Autowired
-    RedevableDao redevableDao;
-
-    @Autowired
-    LocaleService localeService;
-
-    @Autowired
-    TaxeBoissonService taxeBoissonService;
-    @Autowired
-    private TypeRedevableService typeRedevableService;
 
 
 }
