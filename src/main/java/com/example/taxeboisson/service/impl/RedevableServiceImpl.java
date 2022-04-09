@@ -15,15 +15,8 @@ import java.util.List;
 
 @Service
 public class RedevableServiceImpl implements RedevableService {
-
     @Autowired
-    RedevableDao redevableDao;
-
-    @Autowired
-    LocaleService localeService;
-
-    @Autowired
-    TaxeBoissonService taxeBoissonService;
+    private RedevableDao redevableDao;
     @Autowired
     private TypeRedevableService typeRedevableService;
 
@@ -42,11 +35,6 @@ public class RedevableServiceImpl implements RedevableService {
             return 1;
         }
 
-    }
-
-    private void prepare(Redevable redevable){
-        TypeRedevable typeRedevable = typeRedevableService.findByCode(redevable.getTypeRedevable().getCode());
-        redevable.setTypeRedevable(typeRedevable);
     }
 
     @Override
@@ -76,5 +64,8 @@ public class RedevableServiceImpl implements RedevableService {
         return redevableDao.findAll();
     }
 
-
+    private void prepare(Redevable redevable){
+        TypeRedevable typeRedevable = typeRedevableService.findByCode(redevable.getTypeRedevable().getCode());
+        redevable.setTypeRedevable(typeRedevable);
+    }
 }

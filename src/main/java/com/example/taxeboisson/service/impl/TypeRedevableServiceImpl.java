@@ -13,11 +13,9 @@ import java.util.List;
 @Service
 public class TypeRedevableServiceImpl implements TypeRedevableService {
     @Autowired
-    RedevableService redevableService;
+    private RedevableService redevableService;
     @Autowired
-    TypeRedevableDao typeRedevableDao;
-
-
+    private TypeRedevableDao typeRedevableDao;
 
     @Override
     public int save(TypeRedevable typeRedevable) {
