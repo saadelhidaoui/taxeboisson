@@ -45,19 +45,23 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         return taxeBoissonDao.findAll();
     }
 
+    @Override
     public TaxeBoisson findByAnnee(int annee) {
         return taxeBoissonDao.findByAnnee(annee);
     }
 
+    @Override
     @Transactional
     public int deleteByAnnee(int annee) {
         return taxeBoissonDao.deleteByAnnee(annee);
     }
 
+    @Override
     public TaxeBoisson findByAnneeAndTrim(int annee, int trim) {
         return taxeBoissonDao.findByAnneeAndTrim(annee, trim);
     }
 
+    @Override
     @Transactional
     public int deleteByAnneeAndTrim(int annee, int trim) {
         return taxeBoissonDao.deleteByAnneeAndTrim(annee, trim);
@@ -77,6 +81,9 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
 
             Secteur secteur = secteurService.findByCode(taxeBoisson.getLocale().getSecteur().getCode());
             taxeBoisson.getLocale().setSecteur(secteur);
+
+            TauxTaxeBoisson tauxTaxeBoisson = tauxTaxeBoissonService.findByCategorieLocaleRef(taxeBoisson.getLocale().getCategorieLocale().getRef());
+            taxeBoisson.setPourcentageApplique(tauxTaxeBoisson.getPourcentage());
         }
 
     }
@@ -114,9 +121,7 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
     }
 
     void handleProcess(TaxeBoisson taxeBoisson) {
-        TauxTaxeBoisson t = tauxTaxeBoissonService.findByCategorieLocaleRef(taxeBoisson.getLocale().getCategorieLocale().getRef());
 
-        taxeBoisson.setPourcentageApplique(t.getPourcentage());
         double mtb = (taxeBoisson.getPourcentageApplique() / 100) * taxeBoisson.getChiffreAffaire();
 
         taxeBoisson.setMontantBase(mtb);
