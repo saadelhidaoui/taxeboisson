@@ -90,6 +90,7 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         int tri = taxeBoisson.getTrim();
 
         TaxeBoisson byLocaleRefAndTrimAndAnnee = null;
+
         if (taxeBoisson.getLocale() != null) {
             byLocaleRefAndTrimAndAnnee = findByLocaleRefAndTrimAndAnnee(taxeBoisson.getLocale().getRef(), tri, taxeBoisson.getAnnee());
         }
@@ -98,24 +99,25 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
             return -1;
         } else if (taxeBoisson.getChiffreAffaire() <= 0) {
             return -2;
-        } else if (byLocaleRefAndTrimAndAnnee != null) {
-            return -3;
         } else if (taxeBoisson.getLocale() == null) {
+            return -3;
+        }else if (taxeBoisson.getLocale().getRedevable() == null) {
             return -4;
-        } else if (taxeBoisson.getLocale().getRedevable() == null) {
-            return -5;
         } else if (taxeBoisson.getLocale().getCategorieLocale() == null) {
-            return -6;
+            return -5;
         } else if (taxeBoisson.getLocale().getSecteur() == null) {
+            return -6;
+        }  else if (byLocaleRefAndTrimAndAnnee != null) {
             return -7;
         } else {
 
             return 1;
 
         }
+
     }
 
-    void  handleProcess(TaxeBoisson taxeBoisson){
+    void handleProcess(TaxeBoisson taxeBoisson) {
         TauxTaxeBoisson t = tauxTaxeBoissonService.findByCategorieLocaleRef(taxeBoisson.getLocale().getCategorieLocale().getRef());
 
         taxeBoisson.setPourcentageApplique(t.getPourcentage());
@@ -131,7 +133,7 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         int res = validate(taxeBoisson);
 
         if (res > 0) {
-          handleProcess(taxeBoisson);
+            handleProcess(taxeBoisson);
         }
 
         return res;
