@@ -29,13 +29,10 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         return taxeBoissonDao.deleteByLocaleRef(ref);
     }
 
-
-
     @Override
     public TaxeBoisson findByLocaleRefAndTrimAndAnnee(String ref, int trim, int annee) {
         return taxeBoissonDao.findByLocaleRefAndTrimAndAnnee(ref, trim, annee);
     }
-
 
     @Override
     @Transactional
@@ -49,62 +46,111 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
     }
 
     @Override
-//    public int save(TaxeBoisson taxeBoisson) {
-//        if (findByRef(taxeBoisson.getRef()) != null) {
-//            return -1;
-//        } else if (taxeBoisson.getChiffreAffaire() <= 0) {
-//            return -2;
-//        } else {
-//            taxeBoissonDao.save(taxeBoisson);
-//            return 1;
-//        }
-//    }
-    public int save(TaxeBoisson taxeBoisson) {
+    public TaxeBoisson findByAnnee(int annee) {
+        return taxeBoissonDao.findByAnnee(annee);
+    }
+
+    @Override
+    @Transactional
+    public int deleteByAnnee(int annee) {
+        return taxeBoissonDao.deleteByAnnee(annee);
+    }
+
+    @Override
+    public TaxeBoisson findByAnneeAndTrim(int annee, int trim) {
+        return taxeBoissonDao.findByAnneeAndTrim(annee, trim);
+    }
+
+    @Override
+    @Transactional
+    public int deleteByAnneeAndTrim(int annee, int trim) {
+        return taxeBoissonDao.deleteByAnneeAndTrim(annee, trim);
+    }
+
+
+    void prepare(TaxeBoisson taxeBoisson) {
         Locale locale = localeService.findByRef(taxeBoisson.getLocale().getRef());
         taxeBoisson.setLocale(locale);
 
-        Redevable redevable = redevableService.findByCin(taxeBoisson.getLocale().getRedevable().getCin());
-        taxeBoisson.getLocale().setRedevable(redevable);
+        if (locale != null) {
+            Redevable redevable = redevableService.findByCin(taxeBoisson.getLocale().getRedevable().getCin());
+            taxeBoisson.getLocale().setRedevable(redevable);
 
+            CategorieLocale categorieLocale = categorieLocaleService.findByRef(taxeBoisson.getLocale().getCategorieLocale().getRef());
+            taxeBoisson.getLocale().setCategorieLocale(categorieLocale);
+
+            Secteur secteur = secteurService.findByCode(taxeBoisson.getLocale().getSecteur().getCode());
+            taxeBoisson.getLocale().setSecteur(secteur);
+        }
+
+    }
+
+    int validate(TaxeBoisson taxeBoisson) {
         int anneeActuelle = Calendar.getInstance().get(Calendar.YEAR);
-        int  tri = taxeBoisson.getTrim();
-        TaxeBoisson byLocaleRefAndTrimAndAnnee = findByLocaleRefAndTrimAndAnnee(taxeBoisson.getLocale().getRef(),tri, taxeBoisson.getAnnee());
+        int tri = taxeBoisson.getTrim();
+
+        TaxeBoisson byLocaleRefAndTrimAndAnnee = null;
+
+        if (taxeBoisson.getLocale() != null) {
+            byLocaleRefAndTrimAndAnnee = findByLocaleRefAndTrimAndAnnee(taxeBoisson.getLocale().getRef(), tri, taxeBoisson.getAnnee());
+        }
 
         if (taxeBoisson.getAnnee() > anneeActuelle) {
             return -1;
         } else if (taxeBoisson.getChiffreAffaire() <= 0) {
             return -2;
-        } else if ( byLocaleRefAndTrimAndAnnee != null) {
+        } else if (taxeBoisson.getLocale() == null) {
             return -3;
-        } else if (locale == null) {
+        }else if (taxeBoisson.getLocale().getRedevable() == null) {
             return -4;
-        } else if (redevable == null) {
+        } else if (taxeBoisson.getLocale().getCategorieLocale() == null) {
             return -5;
+        } else if (taxeBoisson.getLocale().getSecteur() == null) {
+            return -6;
+        }  else if (byLocaleRefAndTrimAndAnnee != null) {
+            return -7;
         } else {
-
-               TauxTaxeBoisson t = tauxTaxeBoissonService.findByCategorieLocaleRef(taxeBoisson.getLocale().getCategorieLocale().getRef());
-
-               taxeBoisson.setPourcentageApplique(t.getPourcentage());
-               double mtb = (taxeBoisson.getPourcentageApplique()/100) * taxeBoisson.getChiffreAffaire();
-
-               taxeBoisson.setMontantBase(mtb);
-               taxeBoissonDao.save(taxeBoisson);
-
 
             return 1;
 
         }
+
     }
-    @Autowired
-     TauxTaxeBoissonService tauxTaxeBoissonService;
+
+    void handleProcess(TaxeBoisson taxeBoisson) {
+        TauxTaxeBoisson t = tauxTaxeBoissonService.findByCategorieLocaleRef(taxeBoisson.getLocale().getCategorieLocale().getRef());
+
+        taxeBoisson.setPourcentageApplique(t.getPourcentage());
+        double mtb = (taxeBoisson.getPourcentageApplique() / 100) * taxeBoisson.getChiffreAffaire();
+
+        taxeBoisson.setMontantBase(mtb);
+        taxeBoissonDao.save(taxeBoisson);
+    }
+
+    public int save(TaxeBoisson taxeBoisson) {
+        prepare(taxeBoisson);
+
+        int res = validate(taxeBoisson);
+
+        if (res > 0) {
+            handleProcess(taxeBoisson);
+        }
+
+        return res;
+    }
 
     @Autowired
-     TaxeBoissonDao taxeBoissonDao;
+    TauxTaxeBoissonService tauxTaxeBoissonService;
+
+    @Autowired
+    TaxeBoissonDao taxeBoissonDao;
     @Autowired
     LocaleService localeService;
     @Autowired
     RedevableService redevableService;
     @Autowired
     CategorieLocaleService categorieLocaleService;
+    @Autowired
+    SecteurService secteurService;
 
 }
