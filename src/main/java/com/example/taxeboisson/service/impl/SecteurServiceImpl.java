@@ -14,24 +14,57 @@ import java.util.List;
 @Service
 public class SecteurServiceImpl implements SecteurService {
 
-    /**
-     * DAO
-     **/
+/***************    DAO     ****************/
+
     @Autowired
-    SecteurDao secteurDao;
+    private SecteurDao secteurDao;
 
-    /**
-     * Service
-     **/
+/***************    Service     ****************/
+
     @Autowired
-    LocaleService localeService;
+    private LocaleService localeService;
 
+/***************    Delete Methods     ****************/
 
+    @Override
+    @Transactional
+    public int deleteByLibelle(String libelle) {
 
+        List<Locale> locales= localeService.findBySecteurLibelle(libelle);
+        for (Locale locale : locales) {
+            locale.setSecteur(null);
+            localeService.update(locale);
+        }
+        return secteurDao.deleteByLibelle(libelle);
+    }
 
-    /**
-     * Get Methods
-     **/
+    @Transactional
+    @Override
+    public int deleteByCode(String code) {
+
+        List<Locale> locales= localeService.findBySecteurCode(code);
+        for (Locale locale : locales) {
+            locale.setSecteur(null);
+            localeService.update(locale);
+        }
+        return localeService.deleteBySecteurCode(code) ;
+    }
+
+/***************    save Methods     ****************/
+
+    @Override
+    public int save(Secteur secteur) {
+        if (findByCode(secteur.getCode()) != null) {
+            return -1;
+        }if (findByCode(secteur.getLibelle()) != null) {
+            return -2;
+        } else {
+            secteurDao.save(secteur);
+            return 1;
+        }
+    }
+/***************    find Methods     ****************/
+
     @Override
     public Secteur findByLibelle(String libelle) {
         return secteurDao.findByLibelle(libelle);
@@ -46,51 +79,5 @@ public class SecteurServiceImpl implements SecteurService {
     public List<Secteur> findAll() {
         return secteurDao.findAll();
     }
-
-
-
-    /**
-     * Delete Methods
-     **/
-    @Override
-    @Transactional
-    public int deleteByLibelle(String libelle) {
-
-        List<Locale> locales= localeService.findBySecteurLibelle(libelle);
-        for (Locale locale : locales) {
-            locale.setSecteur(null);
-            localeService.update(locale);
-        }
-        return secteurDao.deleteByLibelle(libelle);
-    }
-
-
-    @Transactional
-    @Override
-    public int deleteByCode(String code) {
-
-        List<Locale> locales= localeService.findBySecteurCode(code);
-        for (Locale locale : locales) {
-            locale.setSecteur(null);
-            localeService.update(locale);
-        }
-        return localeService.deleteBySecteurCode(code) ;
-    }
-
-    /**
-     * Save Methods
-     **/
-    @Override
-    public int save(Secteur secteur) {
-        if (findByCode(secteur.getCode()) != null) {
-            return -1;
-        }if (findByCode(secteur.getLibelle()) != null) {
-            return -2;
-        } else {
-            secteurDao.save(secteur);
-            return 1;
-        }
-    }
-
 
 }

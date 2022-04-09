@@ -19,22 +19,72 @@ public class LocaleServiceImpl implements LocaleService {
     /******            DAO          ******/
 
     @Autowired
-    LocaleDao localeDao;
+    private LocaleDao localeDao;
 
     /******            Services          ******/
     @Autowired
-    SecteurService secteurService;
+    private SecteurService secteurService;
     @Autowired
-    RedevableService redevableService;
+    private RedevableService redevableService;
     @Autowired
-    CategorieLocaleService categorieLocaleServic;
-    @Autowired
-    TaxeBoissonService taxeBoissonService;
+    private CategorieLocaleService categorieLocaleServic;
 
 
-    /**
-     * Get Methods
-     **/
+
+/***************    Put Methods     ****************/
+
+    @Override
+    public void update(Locale locale) {
+
+        if(findByRef(locale.getRef())!=null)
+        {
+            localeDao.save(locale);
+        }
+
+    }
+/***************    Post Methods     ****************/
+
+    @Override
+    public int save(Locale locale) {
+        prepareLocale(locale);
+        int res = validateLocale(locale);
+
+        if (res < 0) {
+            return res;
+        } else {
+            localeDao.save(locale);
+            return 1;
+        }
+    }
+/****************       Delete Methods          **************/
+    @Transactional
+    @Override
+    public int deleteByRef(String ref) {
+        return localeDao.deleteByRef(ref);
+    }
+
+    @Transactional
+    @Override
+    public int deleteBySecteurCode(String code) {
+        return localeDao.deleteBySecteurCode(code);
+    }
+
+    @Transactional
+    @Override
+    public int deleteByRedevableCin(String cin) {
+        return localeDao.deleteByRedevableCin(cin);
+    }
+
+    @Transactional
+    @Override
+    public int deleteByCategorielocaleRef(String ref) {
+        return localeDao.deleteByCategorieLocaleRef(ref);
+    }
+
+
+
+
+    /**         Get Methods         **/
     @Override
     public Locale findByRef(String ref) {
         return localeDao.findByRef(ref);
@@ -70,59 +120,8 @@ public class LocaleServiceImpl implements LocaleService {
         return localeDao.findAll();
     }
 
-    /**
-     * Delete Methods
-     **/
-    @Transactional
-    @Override
-    public int deleteByRef(String ref) {
-        return localeDao.deleteByRef(ref);
-    }
 
-    @Transactional
-    @Override
-    public int deleteBySecteurCode(String code) {
-        return localeDao.deleteBySecteurCode(code);
-    }
-
-    @Transactional
-    @Override
-    public int deleteByRedevableCin(String cin) {
-        return localeDao.deleteByRedevableCin(cin);
-    }
-
-    @Transactional
-    @Override
-    public int deleteByCategorielocaleRef(String ref) {
-        return localeDao.deleteByCategorieLocaleRef(ref);
-    }
-
-
-
-    /**
-     * Put Methods
-     **/
-
-    @Override
-    public void update(Locale locale) {
-        localeDao.save(locale);
-    }
-
-    /**
-     * Post Methods
-     **/
-    @Override
-    public int save(Locale locale) {
-        prepareLocale(locale);
-        int res = validateLocale(locale);
-
-        if (res < 0) {
-            return res;
-        } else {
-            localeDao.save(locale);
-            return 1;
-        }
-    }
+    /***************    validate and prepare     ****************/
 
     private int validateLocale(Locale locale) {
         if (findByRef(locale.getRef()) != null) {
