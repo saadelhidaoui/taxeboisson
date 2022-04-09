@@ -15,6 +15,8 @@ public interface TaxeBoissonService {
     int deleteByLocaleRef(String ref);
 
 
+    TaxeBoisson findByRedevableCin(String cin);
+
     TaxeBoisson findByLocaleRefAndTrimAndAnnee(String ref, int trim, int annee);
 
     List<TaxeBoisson> findAll();
