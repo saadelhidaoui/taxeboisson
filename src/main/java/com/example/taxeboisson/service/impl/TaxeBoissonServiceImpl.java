@@ -71,8 +71,8 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         int  tri = taxeBoisson.getTrim();
         TaxeBoisson byLocaleRefAndTrimAndAnnee = findByLocaleRefAndTrimAndAnnee(taxeBoisson.getLocale().getRef(),tri, taxeBoisson.getAnnee());
 
-        if (taxeBoisson.getAnnee() > anneeActuelle) {
 
+        if (taxeBoisson.getAnnee() > anneeActuelle) {
             return -1;
         } else if (taxeBoisson.getChiffreAffaire() <= 0) {
             return -2;
