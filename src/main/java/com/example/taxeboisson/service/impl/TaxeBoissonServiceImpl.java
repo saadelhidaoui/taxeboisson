@@ -51,6 +51,7 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
     }
 
     @Override
+    @Transactional
     public int deleteByAnnee(int annee) {
         return taxeBoissonDao.deleteByAnnee(annee);
     }
@@ -61,6 +62,7 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
     }
 
     @Override
+    @Transactional
     public int deleteByAnneeAndTrim(int annee, int trim) {
         return taxeBoissonDao.deleteByAnneeAndTrim(annee, trim);
     }
