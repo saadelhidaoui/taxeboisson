@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/taxe-Boisson/taxe")
+@RequestMapping("/api/taxe-boisson/taxe")
 public class TaxeBoissonWs {
 
 
@@ -35,7 +35,7 @@ public class TaxeBoissonWs {
 
 
     @GetMapping("/locale/ref/{ref}/trim/{trim}/annee/{annee}")
-    public TaxeBoisson findByLocaleRefAndTrimAndAnnee(@PathVariable String ref,@PathVariable double trim,@PathVariable double annee) {
+    public TaxeBoisson findByLocaleRefAndTrimAndAnnee(@PathVariable String ref,@PathVariable int trim,@PathVariable int annee) {
         return taxeBoissonService.findByLocaleRefAndTrimAndAnnee(ref, trim, annee);
     }
 

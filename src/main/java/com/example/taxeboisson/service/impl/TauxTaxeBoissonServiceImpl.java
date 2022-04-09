@@ -1,7 +1,9 @@
 package com.example.taxeboisson.service.impl;
 
+import com.example.taxeboisson.bean.CategorieLocale;
 import com.example.taxeboisson.bean.TauxTaxeBoisson;
 import com.example.taxeboisson.dao.TauxTaxeBoissonDao;
+import com.example.taxeboisson.service.facade.CategorieLocaleService;
 import com.example.taxeboisson.service.facade.TauxTaxeBoissonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +36,8 @@ public class TauxTaxeBoissonServiceImpl implements TauxTaxeBoissonService {
         } else if (tauxTaxeBoisson.getPourcentage() <= 0) {
             return -2;
         } else {
-
+            CategorieLocale categorieLocale= categorieLocaleService.findByRef(tauxTaxeBoisson.getCategorieLocale().getRef());
+            tauxTaxeBoisson.setCategorieLocale(categorieLocale);
             tauxTaxeBoissonDao.save(tauxTaxeBoisson);
             return 1;
         }
@@ -66,6 +69,9 @@ public class TauxTaxeBoissonServiceImpl implements TauxTaxeBoissonService {
 
     @Autowired
     private TauxTaxeBoissonDao tauxTaxeBoissonDao;
+
+    @Autowired
+    private CategorieLocaleService categorieLocaleService;
 
 
 }

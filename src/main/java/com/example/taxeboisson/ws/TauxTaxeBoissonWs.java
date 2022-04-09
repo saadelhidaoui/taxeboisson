@@ -3,6 +3,7 @@ package com.example.taxeboisson.ws;
 import com.example.taxeboisson.bean.TauxTaxeBoisson;
 import com.example.taxeboisson.service.facade.TauxTaxeBoissonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,9 +32,19 @@ public class TauxTaxeBoissonWs {
         return tauxTaxeBoissonService.save(tautaxeboisson);
     }
 
+
     @PutMapping("/updatepourcentage/ref/{ref}/nouveaupr/{nouveaupr}")
-    public int updatepourcentage(@PathVariable String ref, @PathVariable double nouveaupr) {
+    public int updatePourcentage(@PathVariable String ref, @PathVariable double nouveaupr) {
         return tauxTaxeBoissonService.updatePourcentage(ref, nouveaupr);
+    }
+    @GetMapping("/categorielocal/ref/{ref}")
+    public TauxTaxeBoisson findByCategorieLocaleRef(@PathVariable String ref) {
+        return tauxTaxeBoissonService.findByCategorieLocaleRef(ref);
+    }
+
+    @DeleteMapping("categorielocal/ref/{ref}")
+    public int deleteByCategorieLocaleRef(@PathVariable String ref) {
+        return tauxTaxeBoissonService.deleteByCategorieLocaleRef(ref);
     }
 
     @Autowired

@@ -11,16 +11,8 @@ public class Redevable {
     @ManyToOne
     private TypeRedevable typeRedevable;
 
-    @ManyToOne
-    private TaxeBoisson taxeBoisson;
 
-    public TaxeBoisson getTaxeBoisson() {
-        return taxeBoisson;
-    }
 
-    public void setTaxeBoisson(TaxeBoisson taxeBoisson) {
-        this.taxeBoisson = taxeBoisson;
-    }
 
     public TypeRedevable getTypeRedevable() {
         return typeRedevable;

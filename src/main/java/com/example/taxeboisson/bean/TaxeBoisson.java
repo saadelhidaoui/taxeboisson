@@ -14,18 +14,10 @@ public class TaxeBoisson {
     private double chiffreAffaire;
     private double pourcentageApplique;
     private double montantBase;
+
     @ManyToOne
     private Locale locale;
-    @ManyToOne
-    private Redevable redevable;
 
-    public Redevable getRedevable() {
-        return redevable;
-    }
-
-    public void setRedevable(Redevable redevable) {
-        this.redevable = redevable;
-    }
 
     public Locale getLocale() {
         return locale;
@@ -35,12 +27,6 @@ public class TaxeBoisson {
         this.locale = locale;
     }
 
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
     public String getRef() {
         return ref;
     }

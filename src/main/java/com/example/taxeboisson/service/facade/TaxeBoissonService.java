@@ -13,11 +13,9 @@ public interface TaxeBoissonService {
     @Transactional
     int deleteByLocaleRef(String ref);
 
-    TaxeBoisson findByLocaleRefAndTrimAndAnnee(String ref, double trim, double annee);
 
-    TaxeBoisson findByRedevableCin(String cin);
+    TaxeBoisson findByLocaleRefAndTrimAndAnnee(String ref, int trim, int annee);
 
-    int deleteByRedevableCin(String cin);
 
 
 
