@@ -96,8 +96,8 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         int anneeActuelle = Calendar.getInstance().get(Calendar.YEAR);
         int tri = taxeBoisson.getTrim();
 
-        TaxeBoisson byLocaleRefAndTrimAndAnnee=null;
-        if (taxeBoisson.getLocale()!= null) {
+        TaxeBoisson byLocaleRefAndTrimAndAnnee = null;
+        if (taxeBoisson.getLocale() != null) {
             byLocaleRefAndTrimAndAnnee = findByLocaleRefAndTrimAndAnnee(taxeBoisson.getLocale().getRef(), tri, taxeBoisson.getAnnee());
         }
 
@@ -122,40 +122,25 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         }
     }
 
+    void  handleProcess(TaxeBoisson taxeBoisson){
+        TauxTaxeBoisson t = tauxTaxeBoissonService.findByCategorieLocaleRef(taxeBoisson.getLocale().getCategorieLocale().getRef());
+
+        taxeBoisson.setPourcentageApplique(t.getPourcentage());
+        double mtb = (taxeBoisson.getPourcentageApplique() / 100) * taxeBoisson.getChiffreAffaire();
+
+        taxeBoisson.setMontantBase(mtb);
+        taxeBoissonDao.save(taxeBoisson);
+    }
+
     public int save(TaxeBoisson taxeBoisson) {
         prepare(taxeBoisson);
 
         int res = validate(taxeBoisson);
 
-//        if (taxeBoisson.getAnnee() > anneeActuelle) {
-//            return -1;
-//        } else if (taxeBoisson.getChiffreAffaire() <= 0) {
-//            return -2;
-//        } else if (byLocaleRefAndTrimAndAnnee != null) {
-//            return -3;
-//        } else if (taxeBoisson.getLocale() == null) {
-//            return -4;
-//        } else if (taxeBoisson.getLocale().getRedevable() == null) {
-//            return -5;
-//        } else if (taxeBoisson.getLocale().getCategorieLocale() == null) {
-//            return -6;
-//        } else if (taxeBoisson.getLocale().getSecteur() == null) {
-//            return -7;
-//        } else {
-//
         if (res > 0) {
-            TauxTaxeBoisson t = tauxTaxeBoissonService.findByCategorieLocaleRef(taxeBoisson.getLocale().getCategorieLocale().getRef());
-
-            taxeBoisson.setPourcentageApplique(t.getPourcentage());
-            double mtb = (taxeBoisson.getPourcentageApplique() / 100) * taxeBoisson.getChiffreAffaire();
-
-            taxeBoisson.setMontantBase(mtb);
-            taxeBoissonDao.save(taxeBoisson);
+          handleProcess(taxeBoisson);
         }
 
-//            return 1;
-//
-//        }
         return res;
     }
 
