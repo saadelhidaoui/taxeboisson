@@ -17,4 +17,6 @@ public interface RedevableService {
     List<Redevable> findAll();
 
     int save(Redevable redevable);
+
+    void update(Redevable e);
 }

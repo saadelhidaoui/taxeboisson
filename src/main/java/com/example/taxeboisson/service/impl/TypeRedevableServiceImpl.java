@@ -1,5 +1,6 @@
 package com.example.taxeboisson.service.impl;
 
+import com.example.taxeboisson.bean.Redevable;
 import com.example.taxeboisson.bean.TypeRedevable;
 import com.example.taxeboisson.dao.TypeRedevableDao;
 import com.example.taxeboisson.service.facade.RedevableService;
@@ -21,10 +22,24 @@ public class TypeRedevableServiceImpl implements TypeRedevableService {
     public int save(TypeRedevable typeRedevable) {
         if (findByCode(typeRedevable.getCode()) != null) {
             return -1;
-        } else {
+        }else if(typeRedevable.getLibelle() == null){
+            return -2;
+        }else {
             typeRedevableDao.save(typeRedevable);
             return 1;
         }
+    }
+    @Transactional
+    @Override
+    public int deleteByCode(String code) {
+        List<Redevable> redevables=redevableService.findByTypeRedevableCode(code);
+        redevables.forEach(
+                e->{
+                    e.setTypeRedevable(null);
+                    redevableService.update(e);
+                }
+        );
+        return typeRedevableDao.deleteByCode(code);
     }
 
     @Override
@@ -32,13 +47,6 @@ public class TypeRedevableServiceImpl implements TypeRedevableService {
         return typeRedevableDao.findByCode(code);
     }
 
-    @Transactional
-    @Override
-    public int deleteByCode(String code) {
-        int res1 = redevableService.deleteByTypeRedevableCode(code);
-        int res2 = typeRedevableDao.deleteByCode(code);
-        return res1 + res2;
-    }
 
     @Override
     public List<TypeRedevable> findAll() {

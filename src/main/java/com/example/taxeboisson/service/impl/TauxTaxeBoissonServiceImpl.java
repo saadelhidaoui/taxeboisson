@@ -19,6 +19,17 @@ public class TauxTaxeBoissonServiceImpl implements TauxTaxeBoissonService {
     @Autowired
     private CategorieLocaleService categorieLocaleService;
 
+    @Override
+    public TauxTaxeBoisson findByCategorieLocaleRef(String ref) {
+        return tauxTaxeBoissonDao.findByCategorieLocaleRef(ref);
+    }
+
+    @Override
+    @Transactional
+    public int deleteByCategorieLocaleRef(String ref) {
+        return tauxTaxeBoissonDao.deleteByCategorieLocaleRef(ref);
+    }
+
 
     @Override
     public TauxTaxeBoisson findByRef(String ref) {
@@ -59,20 +70,8 @@ public class TauxTaxeBoissonServiceImpl implements TauxTaxeBoissonService {
             tauxTaxeBoisson.setPourcentage(nouveaupr);
             tauxTaxeBoissonDao.save(tauxTaxeBoisson);
             return 1;
-        } else return 0;
+        } else return -1;
     }
-
-    @Override
-    public TauxTaxeBoisson findByCategorieLocaleRef(String ref) {
-        return tauxTaxeBoissonDao.findByCategorieLocaleRef(ref);
-    }
-
-    @Override
-    @Transactional
-    public int deleteByCategorieLocaleRef(String ref) {
-        return tauxTaxeBoissonDao.deleteByCategorieLocaleRef(ref);
-    }
-
 
 
 
