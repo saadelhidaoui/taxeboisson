@@ -9,5 +9,6 @@ public interface CategorieLocaleDao extends JpaRepository<CategorieLocale, Long>
 
     CategorieLocale findByRef(String ref);
 
+   CategorieLocale findByDescription(String description);
     int deleteByRef(String ref);
 }

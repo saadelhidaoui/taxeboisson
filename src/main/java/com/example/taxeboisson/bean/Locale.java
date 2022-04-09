@@ -23,8 +23,6 @@ public class Locale {
     private Secteur secteur;
 
 
-
-
     public String getRef() {
         return ref;
     }
