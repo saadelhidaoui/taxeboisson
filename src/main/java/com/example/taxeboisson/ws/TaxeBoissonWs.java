@@ -67,6 +67,11 @@ public class TaxeBoissonWs {
         return taxeBoissonService.deleteByAnneeAndTrim(annee, trim);
     }
 
+    @GetMapping("/redevable/cin/{cin}")
+    public TaxeBoisson findByRedevableCin(@PathVariable String cin) {
+        return taxeBoissonService.findByRedevableCin(cin);
+    }
+
     @Autowired
     TaxeBoissonService taxeBoissonService;
 }

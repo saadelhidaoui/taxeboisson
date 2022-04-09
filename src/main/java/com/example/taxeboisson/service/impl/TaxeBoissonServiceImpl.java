@@ -14,6 +14,42 @@ import java.util.List;
 public class TaxeBoissonServiceImpl implements TaxeBoissonService {
 
     @Override
+    public int save(TaxeBoisson taxeBoisson) {
+        prepare(taxeBoisson);
+
+        int res = validate(taxeBoisson);
+
+        if (res > 0) {
+            handleProcess(taxeBoisson);
+        }
+
+        return res;
+    }
+
+
+    @Override
+    public TaxeBoisson findByLocaleRefAndTrimAndAnnee(String ref, int trim, int annee) {
+        return taxeBoissonDao.findByLocaleRefAndTrimAndAnnee(ref, trim, annee);
+    }
+
+    @Override
+    public TaxeBoisson findByAnneeAndTrim(int annee, int trim) {
+        return taxeBoissonDao.findByAnneeAndTrim(annee, trim);
+    }
+
+    @Override
+    @Transactional
+    public int deleteByAnneeAndTrim(int annee, int trim) {
+        return taxeBoissonDao.deleteByAnneeAndTrim(annee, trim);
+    }
+
+    @Override
+    public TaxeBoisson findByRedevableCin(String cin) {
+        return taxeBoissonDao.findByRedevableCin(cin);
+    }
+
+
+    @Override
     public TaxeBoisson findByRef(String ref) {
         return taxeBoissonDao.findByRef(ref);
     }
@@ -27,11 +63,6 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
     @Transactional
     public int deleteByLocaleRef(String ref) {
         return taxeBoissonDao.deleteByLocaleRef(ref);
-    }
-
-    @Override
-    public TaxeBoisson findByLocaleRefAndTrimAndAnnee(String ref, int trim, int annee) {
-        return taxeBoissonDao.findByLocaleRefAndTrimAndAnnee(ref, trim, annee);
     }
 
     @Override
@@ -55,18 +86,6 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
     public int deleteByAnnee(int annee) {
         return taxeBoissonDao.deleteByAnnee(annee);
     }
-
-    @Override
-    public TaxeBoisson findByAnneeAndTrim(int annee, int trim) {
-        return taxeBoissonDao.findByAnneeAndTrim(annee, trim);
-    }
-
-    @Override
-    @Transactional
-    public int deleteByAnneeAndTrim(int annee, int trim) {
-        return taxeBoissonDao.deleteByAnneeAndTrim(annee, trim);
-    }
-
 
     void prepare(TaxeBoisson taxeBoisson) {
         Locale locale = localeService.findByRef(taxeBoisson.getLocale().getRef());
@@ -128,17 +147,10 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         taxeBoissonDao.save(taxeBoisson);
     }
 
-    public int save(TaxeBoisson taxeBoisson) {
-        prepare(taxeBoisson);
 
-        int res = validate(taxeBoisson);
 
-        if (res > 0) {
-            handleProcess(taxeBoisson);
-        }
 
-        return res;
-    }
+
 
     @Autowired
     TauxTaxeBoissonService tauxTaxeBoissonService;

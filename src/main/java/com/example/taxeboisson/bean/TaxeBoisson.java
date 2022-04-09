@@ -18,7 +18,8 @@ public class TaxeBoisson {
     @ManyToOne
     private Locale locale;
 
-
+    @ManyToOne
+    private Redevable redevable;
 
 
     public Locale getLocale() {
