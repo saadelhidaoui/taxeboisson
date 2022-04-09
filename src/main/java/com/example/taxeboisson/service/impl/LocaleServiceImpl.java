@@ -30,18 +30,17 @@ public class LocaleServiceImpl implements LocaleService {
     private CategorieLocaleService categorieLocaleServic;
 
 
-
 /***************    Put Methods     ****************/
 
     @Override
     public void update(Locale locale) {
 
-        if(findByRef(locale.getRef())!=null)
-        {
+        if (findByRef(locale.getRef()) != null) {
             localeDao.save(locale);
         }
 
     }
+
 /***************    Post Methods     ****************/
 
     @Override
@@ -56,6 +55,7 @@ public class LocaleServiceImpl implements LocaleService {
             return 1;
         }
     }
+
 /****************       Delete Methods          **************/
     @Transactional
     @Override
@@ -82,9 +82,7 @@ public class LocaleServiceImpl implements LocaleService {
     }
 
 
-
-
-    /**         Get Methods         **/
+/**     Get Methods     **/
     @Override
     public Locale findByRef(String ref) {
         return localeDao.findByRef(ref);

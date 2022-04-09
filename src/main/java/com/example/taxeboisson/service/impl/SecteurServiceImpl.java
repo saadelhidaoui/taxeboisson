@@ -13,13 +13,10 @@ import java.util.List;
 
 @Service
 public class SecteurServiceImpl implements SecteurService {
-
-/***************    DAO     ****************/
-
+    /******            DAO          ******/
     @Autowired
     private SecteurDao secteurDao;
-
-/***************    Service     ****************/
+    /******            Service         ******/
 
     @Autowired
     private LocaleService localeService;
@@ -50,7 +47,7 @@ public class SecteurServiceImpl implements SecteurService {
         return localeService.deleteBySecteurCode(code) ;
     }
 
-/***************    save Methods     ****************/
+/***************    Post Methods     ****************/
 
     @Override
     public int save(Secteur secteur) {
@@ -63,7 +60,7 @@ public class SecteurServiceImpl implements SecteurService {
             return 1;
         }
     }
-/***************    find Methods     ****************/
+/***************    Get Methods     ****************/
 
     @Override
     public Secteur findByLibelle(String libelle) {
