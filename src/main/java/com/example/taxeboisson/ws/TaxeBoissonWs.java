@@ -49,6 +49,23 @@ public class TaxeBoissonWs {
         return taxeBoissonService.save(taxeBoisson);
     }
 
+    @GetMapping("/annee/{annee}")
+    public TaxeBoisson findByAnnee(@PathVariable int annee) {
+        return taxeBoissonService.findByAnnee(annee);
+    }
+    @DeleteMapping("/annee/{annee}")
+    public int deleteByAnnee(@PathVariable int annee) {
+        return taxeBoissonService.deleteByAnnee(annee);
+    }
+    @GetMapping("/findannee/{annee}")
+
+    public TaxeBoisson findByAnneeAndTrim(int annee, int trim) {
+        return taxeBoissonService.findByAnneeAndTrim(annee, trim);
+    }
+
+    public int deleteByAnneeAndTrim(int annee, int trim) {
+        return taxeBoissonService.deleteByAnneeAndTrim(annee, trim);
+    }
 
     @Autowired
     TaxeBoissonService taxeBoissonService;

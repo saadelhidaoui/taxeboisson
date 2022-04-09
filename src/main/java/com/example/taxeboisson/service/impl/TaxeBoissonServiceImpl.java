@@ -49,6 +49,26 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
     }
 
     @Override
+    public TaxeBoisson findByAnnee(int annee) {
+        return taxeBoissonDao.findByAnnee(annee);
+    }
+
+    @Override
+    public int deleteByAnnee(int annee) {
+        return taxeBoissonDao.deleteByAnnee(annee);
+    }
+
+    @Override
+    public TaxeBoisson findByAnneeAndTrim(int annee, int trim) {
+        return taxeBoissonDao.findByAnneeAndTrim(annee, trim);
+    }
+
+    @Override
+    public int deleteByAnneeAndTrim(int annee, int trim) {
+        return taxeBoissonDao.deleteByAnneeAndTrim(annee, trim);
+    }
+
+    @Override
 //    public int save(TaxeBoisson taxeBoisson) {
 //        if (findByRef(taxeBoisson.getRef()) != null) {
 //            return -1;

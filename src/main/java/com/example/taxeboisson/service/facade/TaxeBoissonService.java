@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface TaxeBoissonService {
+
     TaxeBoisson findByRef(String ref);
 
     TaxeBoisson findByLocaleRef(String ref);
@@ -23,6 +24,14 @@ public interface TaxeBoissonService {
     int deleteByRef(String ref);
 
     List<TaxeBoisson> findAll();
+
+    TaxeBoisson findByAnnee(int annee);
+
+    int deleteByAnnee(int annee);
+
+    TaxeBoisson findByAnneeAndTrim(int annee, int trim);
+
+    int deleteByAnneeAndTrim(int annee, int trim);
 
     int save(TaxeBoisson taxeBoisson);
 }
