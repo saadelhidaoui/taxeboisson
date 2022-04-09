@@ -10,6 +10,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/taxe-boisson/typeredevable")
 public class TypeRedevableWs {
+
+    @Autowired
+    TypeRedevableService typeRedevableService;
+
     @GetMapping("code/{code}")
     public TypeRedevable findByCode(@PathVariable String code) {
         return typeRedevableService.findByCode(code);
@@ -30,7 +34,6 @@ public class TypeRedevableWs {
         return typeRedevableService.save(typeRedevable);
     }
 
-    @Autowired
-    TypeRedevableService typeRedevableService;
+
 }
 

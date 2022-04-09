@@ -11,16 +11,19 @@ import java.util.List;
 @RequestMapping("/api/taxe-boisson/redevable")
 public class RedevableWs {
 
+    @Autowired
+    RedevableService redevableService;
+
+    @PostMapping("/")
+    public int save(@RequestBody Redevable redevable) {
+        return redevableService.save(redevable);
+    }
 
     @GetMapping("/cin/{cin}")
     public Redevable findByCin(@PathVariable String cin) {
         return redevableService.findByCin(cin);
     }
 
-    @PostMapping("/")
-    public int save(@RequestBody Redevable redevable) {
-        return redevableService.save(redevable);
-    }
 
     @GetMapping("/type-redevable/code/{code}")
     public List<Redevable> findByTypeRedevableCode(@PathVariable String code) {
@@ -42,6 +45,4 @@ public class RedevableWs {
         return redevableService.findAll();
     }
 
-    @Autowired
-    RedevableService redevableService;
 }

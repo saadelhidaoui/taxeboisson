@@ -19,6 +19,8 @@ public class TaxeBoisson {
     private Locale locale;
 
 
+
+
     public Locale getLocale() {
         return locale;
     }

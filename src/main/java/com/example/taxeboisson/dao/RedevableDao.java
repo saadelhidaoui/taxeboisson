@@ -16,4 +16,5 @@ public interface RedevableDao extends JpaRepository<Redevable, Long> {
     int deleteByCin(String cin);
 
     int deleteByTypeRedevableCode(String code);
+
 }
