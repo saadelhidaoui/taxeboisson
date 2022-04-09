@@ -8,7 +8,6 @@ import java.util.List;
 public interface TypeRedevableService {
     TypeRedevable findByCode(String code);
 
-    @Transactional
     int deleteByCode(String code);
 
     List<TypeRedevable> findAll();

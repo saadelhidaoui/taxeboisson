@@ -13,7 +13,7 @@ public class Locale {
     private String adresse;
     private String rue;
 
-    @OneToOne
+    @ManyToOne
     private Redevable redevable;
 
     @ManyToOne

@@ -8,14 +8,10 @@ import java.util.List;
 public interface RedevableService {
     Redevable findByCin(String cin);
 
-
-
     List<Redevable> findByTypeRedevableCode(String code);
 
-    @Transactional
     int deleteByCin(String cin);
 
-    @Transactional
     int deleteByTypeRedevableCode(String code);
 
     List<Redevable> findAll();
