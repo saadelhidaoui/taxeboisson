@@ -5,10 +5,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SecteurDao extends JpaRepository<Secteur, Long>{
+public interface SecteurDao extends JpaRepository<Secteur, Long> {
 
+    /******            Get             ******/
     Secteur findByLibelle(String libelle);
-    int deleteByLibelle(String libelle);
+
     Secteur findByCode(String code);
+
+    /******            delete          ******/
     int deleteByCode(String code);
+
+    int deleteByLibelle(String libelle);
 }

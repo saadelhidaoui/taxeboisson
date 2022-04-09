@@ -8,14 +8,26 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface LocaleDao extends JpaRepository<Locale, Long>{
+public interface LocaleDao extends JpaRepository<Locale, Long> {
+    /******            Get          ******/
     Locale findByRef(String ref);
-    int deleteByRef(String ref);
+
+    List<Locale> findByCategorieLocaleRef(String ref);
+
     List<Locale> findByAdresse(String adresse);
-    List<Locale>  findBySecteurCode(String code);
+
+    List<Locale> findBySecteurCode(String code);
+
+    List<Locale> findByRedevableCin(String cin);
+
+    /******            Delete          ******/
+    int deleteByRef(String ref);
+
     int deleteBySecteurCode(String code);
-    List<Locale>  findByRedevableCin(String cin);
+
     int deleteByRedevableCin(String cin);
-    List<Locale>  findByCategorieLocaleRef(String ref);
+
     int deleteByCategorieLocaleRef(String ref);
+
+    List<Locale> deleteBySecteurLibelle(String libelle);
 }

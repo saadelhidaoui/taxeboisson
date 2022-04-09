@@ -28,6 +28,7 @@ public class CategorieLocaleWs {
 
     @PostMapping("/")
     public int save(@RequestBody CategorieLocale categorielocale) {
+
         return categorielocaleService.save(categorielocale);
     }
 
