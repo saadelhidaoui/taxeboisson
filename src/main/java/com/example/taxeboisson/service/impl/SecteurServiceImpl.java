@@ -50,7 +50,7 @@ public class SecteurServiceImpl implements SecteurService {
         return localeService.deleteBySecteurCode(code) ;
     }
 
-/***************    save Methods     ****************/
+/***************    Post Methods     ****************/
 
     @Override
     public int save(Secteur secteur) {
@@ -63,7 +63,7 @@ public class SecteurServiceImpl implements SecteurService {
             return 1;
         }
     }
-/***************    find Methods     ****************/
+/***************    Get Methods     ****************/
 
     @Override
     public Secteur findByLibelle(String libelle) {
