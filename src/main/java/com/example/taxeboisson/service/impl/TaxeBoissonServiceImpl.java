@@ -65,16 +65,7 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         return taxeBoissonDao.deleteByAnneeAndTrim(annee, trim);
     }
 
-    //    public int save(TaxeBoisson taxeBoisson) {
-//        if (findByRef(taxeBoisson.getRef()) != null) {
-//            return -1;
-//        } else if (taxeBoisson.getChiffreAffaire() <= 0) {
-//            return -2;
-//        } else {
-//            taxeBoissonDao.save(taxeBoisson);
-//            return 1;
-//        }
-//    }
+
     void prepare(TaxeBoisson taxeBoisson) {
         Locale locale = localeService.findByRef(taxeBoisson.getLocale().getRef());
         taxeBoisson.setLocale(locale);
