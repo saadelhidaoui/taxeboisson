@@ -27,12 +27,12 @@ public class LocaleServiceImpl implements LocaleService {
     }
 
     @Override
-    public Locale findByAdresse(String adresse) {
+    public List<Locale>  findByAdresse(String adresse) {
         return localeDao.findByAdresse(adresse);
     }
 
     @Override
-    public Locale findBySecteurCode(String code) {
+    public List<Locale>  findBySecteurCode(String code) {
         return localeDao.findBySecteurCode(code);
     }
 
@@ -43,7 +43,7 @@ public class LocaleServiceImpl implements LocaleService {
     }
 
     @Override
-    public Locale findByRedevableCin(String cin) {
+    public List<Locale>  findByRedevableCin(String cin) {
         return localeDao.findByRedevableCin(cin);
     }
 
@@ -55,7 +55,7 @@ public class LocaleServiceImpl implements LocaleService {
 
 
     @Override
-    public Locale findByCategorieLocaleRef(String ref) {
+    public List<Locale>  findByCategorieLocaleRef(String ref) {
         return localeDao.findByCategorieLocaleRef(ref);
     }
 
@@ -77,14 +77,16 @@ public class LocaleServiceImpl implements LocaleService {
         locale.setSecteur(secteur);
         Redevable redevable = redevableService.findByCin(locale.getRedevable().getCin());
         locale.setRedevable(redevable);
-        CategorieLocale categorielocale = categorieLocaleServic.findByRef(locale.getCategorielocale().getRef());
-        locale.setCategorielocale(categorielocale);
+        CategorieLocale categorielocale = categorieLocaleServic.findByRef(locale.getCategorieLocale().getRef());
+        locale.setCategorieLocale(categorielocale);
         if (findByRef(locale.getRef()) != null) {
             return -1;
         } else if (secteur == null) {
             return -2;
         } else if (redevable == null) {
             return -3;
+        }else if (categorielocale == null) {
+            return -4;
         } else {
             localeDao.save(locale);
             return 1;

@@ -11,11 +11,11 @@ import org.springframework.stereotype.Repository;
 public interface LocaleDao extends JpaRepository<Locale, Long>{
     Locale findByRef(String ref);
     int deleteByRef(String ref);
-    Locale findByAdresse(String adresse);
-    Locale findBySecteurCode(String code);
+    List<Locale> findByAdresse(String adresse);
+    List<Locale>  findBySecteurCode(String code);
     int deleteBySecteurCode(String code);
-    Locale findByRedevableCin(String cin);
+    List<Locale>  findByRedevableCin(String cin);
     int deleteByRedevableCin(String cin);
-    Locale findByCategorieLocaleRef(String ref);
+    List<Locale>  findByCategorieLocaleRef(String ref);
     int deleteByCategorieLocaleRef(String ref);
 }

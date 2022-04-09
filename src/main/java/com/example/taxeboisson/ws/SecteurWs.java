@@ -17,12 +17,12 @@ public class SecteurWs {
     }
 
     @DeleteMapping("/libelle/{libelle}")
-    public int deleteByLibelle(String libelle) {
+    public int deleteByLibelle(@PathVariable String libelle) {
         return secteurService.deleteByLibelle(libelle);
     }
 
     @GetMapping("/code/{code}")
-    public Secteur findByCode(String code) {
+    public Secteur findByCode(@PathVariable String code) {
         return secteurService.findByCode(code);
     }
 

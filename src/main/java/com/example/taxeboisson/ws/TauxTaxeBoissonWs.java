@@ -31,9 +31,9 @@ public class TauxTaxeBoissonWs {
         return tauxTaxeBoissonService.save(tautaxeboisson);
     }
 
-    @PutMapping("/updatepourcentage/ref/{ref}/Nouveaupr/{Nouveaupr}")
-    public int updatepourcentage(@PathVariable String ref, @PathVariable double Nouveaupr) {
-        return tauxTaxeBoissonService.updatePourcentage(ref, Nouveaupr);
+    @PutMapping("/updatepourcentage/ref/{ref}/nouveaupr/{nouveaupr}")
+    public int updatepourcentage(@PathVariable String ref, @PathVariable double nouveaupr) {
+        return tauxTaxeBoissonService.updatePourcentage(ref, nouveaupr);
     }
 
     @Autowired

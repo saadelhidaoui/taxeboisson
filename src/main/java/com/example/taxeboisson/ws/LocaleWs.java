@@ -23,12 +23,12 @@ public class LocaleWs {
     }
 
     @GetMapping("/adresse/{adresse}")
-    public Locale findByAdresse(@PathVariable String adresse) {
+    public List<Locale>  findByAdresse(@PathVariable String adresse) {
         return localeService.findByAdresse(adresse);
     }
 
     @GetMapping("/secteur/code/{code}")
-    public Locale findBySecteurCode(@PathVariable String code) {
+    public List<Locale>  findBySecteurCode(@PathVariable String code) {
         return localeService.findBySecteurCode(code);
     }
 
@@ -42,24 +42,24 @@ public class LocaleWs {
         return localeService.findAll();
     }
 
-    @GetMapping("/redevable/{cin}")
-    public Locale findByRedevableCin(@PathVariable String cin) {
+    @GetMapping("/redevable/cin/{cin}")
+    public List<Locale>  findByRedevableCin(@PathVariable String cin) {
         return localeService.findByRedevableCin(cin);
     }
 
-    @DeleteMapping("/redevable/cin")
+    @DeleteMapping("/redevable/cin/{cin}")
     public int deleteByRedevableCin(@PathVariable String cin) {
         return localeService.deleteByRedevableCin(cin);
     }
 
 
-    @GetMapping("/referenceCategorielocale/{ref}")
-    public Locale findByCategorieLocaleRef(String ref) {
+    @GetMapping("/referenceCategorielocale/ref/{ref}")
+    public List<Locale>  findByCategorieLocaleRef(@PathVariable String ref) {
         return localeService.findByCategorieLocaleRef(ref);
     }
 
-    @DeleteMapping("/referenceCategorie/{ref}")
-    public int deleteByCategorielocaleRef(String ref) {
+    @DeleteMapping("/referenceCategorie/ref/{ref}")
+    public int deleteByCategorielocaleRef(@PathVariable String ref) {
         return localeService.deleteByCategorielocaleRef(ref);
     }
 

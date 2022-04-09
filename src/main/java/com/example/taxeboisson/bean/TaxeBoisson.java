@@ -7,7 +7,7 @@ public class TaxeBoisson {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String ref;
     private int annee;
     private int trim;

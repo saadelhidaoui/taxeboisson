@@ -30,13 +30,6 @@ public class Redevable {
         this.typeRedevable = typeRedevable;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getCin() {
         return cin;

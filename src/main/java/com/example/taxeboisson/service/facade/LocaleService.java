@@ -11,19 +11,19 @@ public interface LocaleService {
     @Transactional
     int deleteByRef(String ref);
 
-    Locale findByAdresse(String adresse);
+    List<Locale>  findByAdresse(String adresse);
 
-    Locale findBySecteurCode(String code);
+    List<Locale>  findBySecteurCode(String code);
 
     @Transactional
     int deleteBySecteurCode(String code);
 
-    Locale findByRedevableCin(String cin);
+    List<Locale>  findByRedevableCin(String cin);
 
     @Transactional
     int deleteByRedevableCin(String cin);
 
-    Locale findByCategorieLocaleRef(String ref);
+    List<Locale>  findByCategorieLocaleRef(String ref);
 
 
     @Transactional

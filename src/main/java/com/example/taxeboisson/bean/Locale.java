@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 public class Locale {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String ref;
     private String adresse;
     private String rue;
@@ -25,12 +25,7 @@ public class Locale {
     @ManyToOne
     private Secteur secteur;
 
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
+
     public String getRef() {
         return ref;
     }
@@ -55,10 +50,10 @@ public class Locale {
     public void setRedevable(Redevable redevable) {
         this.redevable = redevable;
     }
-    public CategorieLocale getCategorielocale() {
+    public CategorieLocale getCategorieLocale() {
         return categorieLocale;
     }
-    public void setCategorielocale(CategorieLocale categorieLocale) {
+    public void setCategorieLocale(CategorieLocale categorieLocale) {
         this.categorieLocale = categorieLocale;
     }
     public Secteur getSecteur() {
