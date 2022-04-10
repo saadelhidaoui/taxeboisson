@@ -13,13 +13,17 @@ import java.util.List;
 
 @Service
 public class CategorieLocaleServiceImpl implements CategorieLocaleService {
-    @Autowired
-    private CategorieLocaleDao categorieLocaleDao;
-    @Autowired
-    private TauxTaxeBoissonService tauxTaxeBoissonService;
-    @Autowired
-    LocaleService localService;
-
+    @Override
+    public int save(CategorieLocale categorieLocale) {
+        if (findByRef(categorieLocale.getRef()) != null) {
+            return -1;
+        }if (findByDescription(categorieLocale.getDescription()) != null) {
+            return -2;
+        } else {
+            categorieLocaleDao.save(categorieLocale);
+            return 1;
+        }
+    }
     @Override
     public CategorieLocale findByRef(String ref) {
         return categorieLocaleDao.findByRef(ref);
@@ -42,19 +46,9 @@ public class CategorieLocaleServiceImpl implements CategorieLocaleService {
         return categorieLocaleDao.findByDescription(description);
     }
 
-    @Override
-    public int save(CategorieLocale categorieLocale) {
-        if (findByRef(categorieLocale.getRef()) != null) {
-            return -1;
-        }if (findByDescription(categorieLocale.getDescription()) != null) {
-            return -2;
-        } else {
-            categorieLocaleDao.save(categorieLocale);
-            return 1;
-        }
-
-    }
-
-
+    @Autowired
+    private CategorieLocaleDao categorieLocaleDao;
+    @Autowired
+    LocaleService localService;
 
 }

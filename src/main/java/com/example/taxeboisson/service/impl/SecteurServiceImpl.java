@@ -13,13 +13,10 @@ import java.util.List;
 
 @Service
 public class SecteurServiceImpl implements SecteurService {
-
-/***************    DAO     ****************/
-
+    /******            DAO          ******/
     @Autowired
     private SecteurDao secteurDao;
-
-/***************    Service     ****************/
+    /******            Service         ******/
 
     @Autowired
     private LocaleService localeService;

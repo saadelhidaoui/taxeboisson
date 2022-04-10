@@ -18,23 +18,20 @@ public class RedevableServiceImpl implements RedevableService {
     @Autowired
     private TypeRedevableService typeRedevableService;
 
-
-
     @Override
     public int save(Redevable redevable) {
         prepare(redevable);
         if (findByCin(redevable.getCin()) != null) {
             return -1;
         }
-        if (redevable.getTypeRedevable() == null) {
+        else if (redevable.getTypeRedevable() == null) {
             return -2;
-        } else {
+        }else {
             redevableDao.save(redevable);
             return 1;
         }
 
     }
-
     @Override
     public Redevable findByCin(String cin) {
         return redevableDao.findByCin(cin);
@@ -65,5 +62,10 @@ public class RedevableServiceImpl implements RedevableService {
     private void prepare(Redevable redevable){
         TypeRedevable typeRedevable = typeRedevableService.findByCode(redevable.getTypeRedevable().getCode());
         redevable.setTypeRedevable(typeRedevable);
+    }
+
+    @Override
+    public void update(Redevable e) {
+        redevableDao.save(e);
     }
 }
