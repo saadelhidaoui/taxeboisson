@@ -27,6 +27,8 @@ public interface TaxeBoissonDao extends JpaRepository<TaxeBoisson, Long> {
 
     TaxeBoisson findByRedevableCin(String cin);
 
+    TaxeBoisson findByRedevableCinAndAnnee(String cin , int annee);
+
     //pour save
     TaxeBoisson findByLocaleRefAndTrimAndAnnee(String ref, int trim, int annee);
 

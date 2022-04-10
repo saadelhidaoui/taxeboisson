@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Calendar;
 import java.util.List;
 
+// fichier simple=12 moyenne = 2 difficile = 1
+
 @Service
 public class TaxeBoissonServiceImpl implements TaxeBoissonService {
 
@@ -26,6 +28,25 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         return res;
     }
 
+    @Override
+    public int annuelRedevable(String cin, int annee){
+        int taux =0;
+        List<Locale> locales =localeService.findByRedevableCin(cin);
+        for (Locale locale :locales) {
+            taux += montantAnnuelLocal(locale.getRef(),annee);
+        }
+        return taux;
+    }
+
+    @Override
+    public int montantAnnuelLocal(String localRef, int annee) {
+        int taux = 0;
+        int i;
+        for (i = 1; i <= 4; i++) {
+            taux += findByLocaleRefAndTrimAndAnnee(localRef, i, annee).getMontantBase();
+        }
+        return taux;
+    }
 
     @Override
     public TaxeBoisson findByLocaleRefAndTrimAndAnnee(String ref, int trim, int annee) {
@@ -48,6 +69,10 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
         return taxeBoissonDao.findByRedevableCin(cin);
     }
 
+    @Override
+    public TaxeBoisson findByRedevableCinAndAnnee(String cin, int annee) {
+        return taxeBoissonDao.findByRedevableCinAndAnnee(cin, annee);
+    }
 
     @Override
     public TaxeBoisson findByRef(String ref) {
@@ -123,13 +148,13 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
             return -2;
         } else if (taxeBoisson.getLocale() == null) {
             return -3;
-        }else if (taxeBoisson.getLocale().getRedevable() == null) {
+        } else if (taxeBoisson.getLocale().getRedevable() == null) {
             return -4;
         } else if (taxeBoisson.getLocale().getCategorieLocale() == null) {
             return -5;
         } else if (taxeBoisson.getLocale().getSecteur() == null) {
             return -6;
-        }  else if (byLocaleRefAndTrimAndAnnee != null) {
+        } else if (byLocaleRefAndTrimAndAnnee != null) {
             return -7;
         } else {
 
@@ -149,9 +174,6 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
 
 
 
-
-
-
     @Autowired
     TauxTaxeBoissonService tauxTaxeBoissonService;
 
@@ -167,3 +189,4 @@ public class TaxeBoissonServiceImpl implements TaxeBoissonService {
     SecteurService secteurService;
 
 }
+

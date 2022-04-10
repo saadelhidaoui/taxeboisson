@@ -36,4 +36,10 @@ public interface TaxeBoissonService {
 
 
     int save(TaxeBoisson taxeBoisson);
+
+    TaxeBoisson findByRedevableCinAndAnnee(String cin, int annee);
+
+    int montantAnnuelLocal(String localRef, int annee);
+
+    int annuelRedevable(String cin, int annee);
 }
